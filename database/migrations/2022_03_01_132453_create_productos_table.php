@@ -17,15 +17,11 @@ class CreateProductosTable extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('marca');
-            $table->string('stock');
             $table->float('precio_venta');
-            $table->unsignedBigInteger('sucursal_id');
+           
             $table->unsignedBigInteger('area_id');
             $table->unsignedBigInteger('categoria_id');
             $table->timestamps();
-
-            $table->foreign('sucursal_id')->references('id')
-                ->on('sucursales');
 
             $table->foreign('area_id')->references('id')
                 ->on('areas');

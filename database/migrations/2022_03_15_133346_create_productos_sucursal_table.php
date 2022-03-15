@@ -20,6 +20,9 @@ class CreateProductosSucursalTable extends Migration
             $table->float('precio_compra');
             $table->integer('stock');
             $table->timestamps();
+
+            $table->foreign('sucursal_id')->references('id')->on('sucursales');
+            $table->foreign('producto_id')->references('id')->on('productos');
         });
     }
 
