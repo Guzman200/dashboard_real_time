@@ -848,7 +848,7 @@
         </aside>
 
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
+        <div class="content-wrapper" id="app">
             <!-- Content Header (Page header) -->
             <div class="content-header">
                 <div class="container-fluid">
@@ -879,7 +879,7 @@
                                 <div class="info-box-content">
                                     <span class="info-box-text">Ganancias</span>
                                     <span class="info-box-number">
-                                        1,000,000
+                                        @{{ estadisticas.ganancias }}
                                     </span>
                                 </div>
                                 <!-- /.info-box-content -->
@@ -894,7 +894,7 @@
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Clientes nuevos</span>
-                                    <span class="info-box-number">410</span>
+                                    <span class="info-box-number">@{{ estadisticas.clientes_nuevos }}</span>
                                 </div>
                                 <!-- /.info-box-content -->
                             </div>
@@ -912,7 +912,7 @@
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Número de ventas</span>
-                                    <span class="info-box-number">760</span>
+                                    <span class="info-box-number">@{{estadisticas.numero_ventas}}</span>
                                 </div>
                                 <!-- /.info-box-content -->
                             </div>
@@ -925,7 +925,7 @@
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Número de clientes</span>
-                                    <span class="info-box-number">2,000</span>
+                                    <span class="info-box-number">@{{estadisticas.numero_clientes}}</span>
                                 </div>
                                 <!-- /.info-box-content -->
                             </div>
@@ -1541,6 +1541,8 @@
     <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
     <!-- development version, includes helpful console warnings -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+
     <script>
         // Enable pusher logging - don't include this in production
         Pusher.logToConsole = true;
@@ -1555,12 +1557,34 @@
         });
 
         // Vue application
-        /*const app = new Vue({
+        const app = new Vue({
             el: '#app',
             data: {
                 messages: [],
+                estadisticas : {
+                    clientes_nuevos : 0,
+                    ganancias : 0,
+                    numero_clientes : 0,
+                    numero_ventas : 0
+                }
             },
-        });*/
+            mounted(){
+                this.getEstadisticasGenerales();
+            },  
+            methods: {
+                async getEstadisticasGenerales(){
+                    
+                    let peticion = await fetch('/api/estadisticasGenerales');
+
+                    let response = await peticion.json();
+
+                    this.estadisticas = response;
+
+                    console.log(response);
+
+                }
+            }
+        });
 
     </script>
 </body>
