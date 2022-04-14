@@ -879,7 +879,7 @@
                                 <div class="info-box-content">
                                     <span class="info-box-text">Ganancias</span>
                                     <span class="info-box-number">
-                                        @{{ estadisticas.ganancias }}
+                                        @{{ estadisticas . ganancias }}
                                     </span>
                                 </div>
                                 <!-- /.info-box-content -->
@@ -894,7 +894,7 @@
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Clientes nuevos</span>
-                                    <span class="info-box-number">@{{ estadisticas.clientes_nuevos }}</span>
+                                    <span class="info-box-number">@{{ estadisticas . clientes_nuevos }}</span>
                                 </div>
                                 <!-- /.info-box-content -->
                             </div>
@@ -912,7 +912,7 @@
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Número de ventas</span>
-                                    <span class="info-box-number">@{{estadisticas.numero_ventas}}</span>
+                                    <span class="info-box-number">@{{ estadisticas . numero_ventas }}</span>
                                 </div>
                                 <!-- /.info-box-content -->
                             </div>
@@ -925,7 +925,7 @@
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Número de clientes</span>
-                                    <span class="info-box-number">@{{estadisticas.numero_clientes}}</span>
+                                    <span class="info-box-number">@{{ estadisticas . numero_clientes }}</span>
                                 </div>
                                 <!-- /.info-box-content -->
                             </div>
@@ -1040,54 +1040,7 @@
                     <div class="row">
                         <!-- Left col -->
                         <div class="col-md-8">
-                            <!-- MAP & BOX PANE -->
-                            {{-- <div class="card">
-                                <div class="card-header">
-                                    <h3 class="card-title">US-Visitors Report</h3>
 
-                                    <div class="card-tools">
-                                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                            <i class="fas fa-minus"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-tool" data-card-widget="remove">
-                                            <i class="fas fa-times"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <!-- /.card-header -->
-                                <div class="card-body p-0">
-                                    <div class="d-md-flex">
-                                        <div class="p-1 flex-fill" style="overflow: hidden">
-                                            <!-- Map will be created here -->
-                                            <div id="world-map-markers" style="height: 325px; overflow: hidden">
-                                                <div class="map"></div>
-                                            </div>
-                                        </div>
-                                        <div class="card-pane-right bg-success pt-2 pb-2 pl-4 pr-4">
-                                            <div class="description-block mb-4">
-                                                <div class="sparkbar pad" data-color="#fff">90,70,90,70,75,80,70</div>
-                                                <h5 class="description-header">8390</h5>
-                                                <span class="description-text">Visits</span>
-                                            </div>
-                                            <!-- /.description-block -->
-                                            <div class="description-block mb-4">
-                                                <div class="sparkbar pad" data-color="#fff">90,50,90,70,61,83,63</div>
-                                                <h5 class="description-header">30%</h5>
-                                                <span class="description-text">Referrals</span>
-                                            </div>
-                                            <!-- /.description-block -->
-                                            <div class="description-block">
-                                                <div class="sparkbar pad" data-color="#fff">90,50,90,70,61,83,63</div>
-                                                <h5 class="description-header">70%</h5>
-                                                <span class="description-text">Organic</span>
-                                            </div>
-                                            <!-- /.description-block -->
-                                        </div><!-- /.card-pane-right -->
-                                    </div><!-- /.d-md-flex -->
-                                </div>
-                                <!-- /.card-body -->
-                            </div> --}}
-                            <!-- /.card -->
                             <div class="row">
                                 <div class="col-md-6">
 
@@ -1109,72 +1062,26 @@
                                         <!-- /.card-header -->
                                         <div class="card-body p-0">
                                             <ul class="products-list product-list-in-card pl-2 pr-2">
-                                                <li class="item">
+                                                <li class="item" v-for="(detalle, index) in ultimosProductosVendidos">
                                                     <div class="product-img">
                                                         <img src="dist/img/default-150x150.png" alt="Product Image"
                                                             class="img-size-50">
                                                     </div>
                                                     <div class="product-info">
-                                                        <a href="javascript:void(0)" class="product-title">Samsung TV
+                                                        <a href="javascript:void(0)"
+                                                            class="product-title">@{{ detalle . producto . nombre }}
                                                             <span
-                                                                class="badge badge-warning float-right">$1800</span></a>
+                                                                class="badge badge-warning float-right">$@{{ detalle . producto . precio_venta }}</span></a>
                                                         <span class="product-description">
-                                                            Samsung 32" 1080p 60Hz LED Smart HDTV.
+                                                            @{{ detalle . producto . marca }}
                                                         </span>
                                                     </div>
                                                 </li>
-                                                <!-- /.item -->
-                                                <li class="item">
-                                                    <div class="product-img">
-                                                        <img src="dist/img/default-150x150.png" alt="Product Image"
-                                                            class="img-size-50">
-                                                    </div>
-                                                    <div class="product-info">
-                                                        <a href="javascript:void(0)" class="product-title">Bicycle
-                                                            <span class="badge badge-info float-right">$700</span></a>
-                                                        <span class="product-description">
-                                                            26" Mongoose Dolomite Men's 7-speed, Navy Blue.
-                                                        </span>
-                                                    </div>
-                                                </li>
-                                                <!-- /.item -->
-                                                <li class="item">
-                                                    <div class="product-img">
-                                                        <img src="dist/img/default-150x150.png" alt="Product Image"
-                                                            class="img-size-50">
-                                                    </div>
-                                                    <div class="product-info">
-                                                        <a href="javascript:void(0)" class="product-title">
-                                                            Xbox One <span class="badge badge-danger float-right">
-                                                                $350
-                                                            </span>
-                                                        </a>
-                                                        <span class="product-description">
-                                                            Xbox One Console Bundle with Halo Master Chief Collection.
-                                                        </span>
-                                                    </div>
-                                                </li>
-                                                <!-- /.item -->
-                                                <li class="item">
-                                                    <div class="product-img">
-                                                        <img src="dist/img/default-150x150.png" alt="Product Image"
-                                                            class="img-size-50">
-                                                    </div>
-                                                    <div class="product-info">
-                                                        <a href="javascript:void(0)" class="product-title">PlayStation 4
-                                                            <span
-                                                                class="badge badge-success float-right">$399</span></a>
-                                                        <span class="product-description">
-                                                            PlayStation 4 500GB Console (PS4)
-                                                        </span>
-                                                    </div>
-                                                </li>
-                                                <!-- /.item -->
                                             </ul>
                                         </div>
                                         <!-- /.card-body -->
                                         <div class="card-footer text-center">
-                                            <a href="javascript:void(0)" class="uppercase">View All Products</a>
+                                            <a href="javascript:void(0)" class="uppercase">Ver todos los productos</a>
                                         </div>
                                         <!-- /.card-footer -->
                                     </div>
@@ -1204,46 +1111,15 @@
                                         <!-- /.card-header -->
                                         <div class="card-body p-0">
                                             <ul class="users-list clearfix">
-                                                <li>
-                                                    <img src="dist/img/user1-128x128.jpg" alt="User Image">
-                                                    <a class="users-list-name" href="#">Alexander Pierce</a>
-                                                    <span class="users-list-date">Today</span>
+                                                <li v-for="(item, index) in clientesConMasCompras">
+                                                    <img :src="'dist/img/user' + incrementarIndex(index) + '-128x128.jpg'"
+                                                        alt="User Image">
+                                                    <a class="users-list-name"
+                                                        href="#">@{{ item . cliente . nombre }}</a>
+                                                    <span class="users-list-date">@{{ item . total_ventas }}
+                                                        compras</span>
                                                 </li>
-                                                <li>
-                                                    <img src="dist/img/user8-128x128.jpg" alt="User Image">
-                                                    <a class="users-list-name" href="#">Norman</a>
-                                                    <span class="users-list-date">Yesterday</span>
-                                                </li>
-                                                <li>
-                                                    <img src="dist/img/user7-128x128.jpg" alt="User Image">
-                                                    <a class="users-list-name" href="#">Jane</a>
-                                                    <span class="users-list-date">12 Jan</span>
-                                                </li>
-                                                <li>
-                                                    <img src="dist/img/user6-128x128.jpg" alt="User Image">
-                                                    <a class="users-list-name" href="#">John</a>
-                                                    <span class="users-list-date">12 Jan</span>
-                                                </li>
-                                                <li>
-                                                    <img src="dist/img/user2-160x160.jpg" alt="User Image">
-                                                    <a class="users-list-name" href="#">Alexander</a>
-                                                    <span class="users-list-date">13 Jan</span>
-                                                </li>
-                                                <li>
-                                                    <img src="dist/img/user5-128x128.jpg" alt="User Image">
-                                                    <a class="users-list-name" href="#">Sarah</a>
-                                                    <span class="users-list-date">14 Jan</span>
-                                                </li>
-                                                <li>
-                                                    <img src="dist/img/user4-128x128.jpg" alt="User Image">
-                                                    <a class="users-list-name" href="#">Nora</a>
-                                                    <span class="users-list-date">15 Jan</span>
-                                                </li>
-                                                <li>
-                                                    <img src="dist/img/user3-128x128.jpg" alt="User Image">
-                                                    <a class="users-list-name" href="#">Nadia</a>
-                                                    <span class="users-list-date">15 Jan</span>
-                                                </li>
+
                                             </ul>
                                             <!-- /.users-list -->
                                         </div>
@@ -1276,73 +1152,20 @@
                                             <thead>
                                                 <tr>
                                                     <th>Order ID</th>
-                                                    <th>Item</th>
+                                                    <th>Cliente</th>
                                                     <th>Status</th>
-                                                    <th>Popularity</th>
+                                                    <th>Forma de pago</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                                                    <td>Call of Duty IV</td>
-                                                    <td><span class="badge badge-success">Shipped</span></td>
+                                                <tr v-for="(venta, index) in ultimasVentas">
+                                                    <td><a href="javascript:void(0)">0000-@{{ venta . id }}</a></td>
+                                                    <td>@{{ venta . cliente . nombre }}</td>
+                                                    <td><span class="badge badge-success">Pagada</span></td>
                                                     <td>
                                                         <div class="sparkbar" data-color="#00a65a" data-height="20">
-                                                            90,80,90,-70,61,-83,63</div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                                                    <td>Samsung Smart TV</td>
-                                                    <td><span class="badge badge-warning">Pending</span></td>
-                                                    <td>
-                                                        <div class="sparkbar" data-color="#f39c12" data-height="20">
-                                                            90,80,-90,70,61,-83,68</div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                                                    <td>iPhone 6 Plus</td>
-                                                    <td><span class="badge badge-danger">Delivered</span></td>
-                                                    <td>
-                                                        <div class="sparkbar" data-color="#f56954" data-height="20">
-                                                            90,-80,90,70,-61,83,63</div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                                                    <td>Samsung Smart TV</td>
-                                                    <td><span class="badge badge-info">Processing</span></td>
-                                                    <td>
-                                                        <div class="sparkbar" data-color="#00c0ef" data-height="20">
-                                                            90,80,-90,70,-61,83,63</div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                                                    <td>Samsung Smart TV</td>
-                                                    <td><span class="badge badge-warning">Pending</span></td>
-                                                    <td>
-                                                        <div class="sparkbar" data-color="#f39c12" data-height="20">
-                                                            90,80,-90,70,61,-83,68</div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                                                    <td>iPhone 6 Plus</td>
-                                                    <td><span class="badge badge-danger">Delivered</span></td>
-                                                    <td>
-                                                        <div class="sparkbar" data-color="#f56954" data-height="20">
-                                                            90,-80,90,70,-61,83,63</div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                                                    <td>Call of Duty IV</td>
-                                                    <td><span class="badge badge-success">Shipped</span></td>
-                                                    <td>
-                                                        <div class="sparkbar" data-color="#00a65a" data-height="20">
-                                                            90,80,90,-70,61,-83,63</div>
+                                                            @{{ venta . forma_pago . descripcion }}
+                                                        </div>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -1363,7 +1186,7 @@
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Costo en inventario</span>
-                                    <span class="info-box-number">5,200</span>
+                                    <span class="info-box-number">@{{estadisticas2.costo_inventario}}</span>
                                 </div>
                                 <!-- /.info-box-content -->
                             </div>
@@ -1373,7 +1196,7 @@
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Productos en inventario</span>
-                                    <span class="info-box-number">92,050</span>
+                                    <span class="info-box-number">@{{estadisticas2.productos_inventario}}</span>
                                 </div>
                                 <!-- /.info-box-content -->
                             </div>
@@ -1383,7 +1206,7 @@
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Total de ventas neto</span>
-                                    <span class="info-box-number">114,381</span>
+                                    <span class="info-box-number">@{{estadisticas2.ventas_neto}}</span>
                                 </div>
                                 <!-- /.info-box-content -->
                             </div>
@@ -1393,7 +1216,7 @@
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Total de ventas bruto</span>
-                                    <span class="info-box-number">163,921</span>
+                                    <span class="info-box-number">@{{estadisticas2.ventas_bruto}}</span>
                                 </div>
                                 <!-- /.info-box-content -->
                             </div>
@@ -1423,7 +1246,7 @@
                                         </div>
                                         <!-- /.col -->
                                         <div class="col-md-4">
-                                            <ul class="chart-legend clearfix">
+                                            <ul class="chart-legend clearfix" id="listProductodMasVendidos">
                                                 <li><i class="far fa-circle text-danger"></i> Chrome</li>
                                                 <li><i class="far fa-circle text-success"></i> IE</li>
                                                 <li><i class="far fa-circle text-warning"></i> FireFox</li>
@@ -1437,53 +1260,53 @@
                                     <!-- /.row -->
                                 </div>
                                 <!-- /.card-body -->
-                                
+
                                 <!-- /.footer -->
                             </div>
                             <!-- /.card -->
 
                             <div class="card">
-                              <div class="card-header">
-                                  <h3 class="card-title">Productos menos vendidos</h3>
+                                <div class="card-header">
+                                    <h3 class="card-title">Productos menos vendidos</h3>
 
-                                  <div class="card-tools">
-                                      <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                          <i class="fas fa-minus"></i>
-                                      </button>
-                                      <button type="button" class="btn btn-tool" data-card-widget="remove">
-                                          <i class="fas fa-times"></i>
-                                      </button>
-                                  </div>
-                              </div>
-                              <!-- /.card-header -->
-                              <div class="card-body">
-                                  <div class="row">
-                                      <div class="col-md-8">
-                                          <div class="chart-responsive">
-                                              <canvas id="pieChart2" height="150"></canvas>
-                                          </div>
-                                          <!-- ./chart-responsive -->
-                                      </div>
-                                      <!-- /.col -->
-                                      <div class="col-md-4">
-                                          <ul class="chart-legend clearfix">
-                                              <li><i class="far fa-circle text-danger"></i> Chrome</li>
-                                              <li><i class="far fa-circle text-success"></i> IE</li>
-                                              <li><i class="far fa-circle text-warning"></i> FireFox</li>
-                                              <li><i class="far fa-circle text-info"></i> Safari</li>
-                                              <li><i class="far fa-circle text-primary"></i> Opera</li>
-                                              <li><i class="far fa-circle text-secondary"></i> Navigator</li>
-                                          </ul>
-                                      </div>
-                                      <!-- /.col -->
-                                  </div>
-                                  <!-- /.row -->
-                              </div>
-                              <!-- /.card-body -->
-                              
-                              <!-- /.footer -->
-                          </div>
-                          <!-- /.card -->
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="chart-responsive">
+                                                <canvas id="pieChart2" height="150"></canvas>
+                                            </div>
+                                            <!-- ./chart-responsive -->
+                                        </div>
+                                        <!-- /.col -->
+                                        <div class="col-md-4">
+                                            <ul class="chart-legend clearfix" id="listProductodMenosVendidos">
+                                                <li><i class="far fa-circle text-danger"></i> Chrome</li>
+                                                <li><i class="far fa-circle text-success"></i> IE</li>
+                                                <li><i class="far fa-circle text-warning"></i> FireFox</li>
+                                                <li><i class="far fa-circle text-info"></i> Safari</li>
+                                                <li><i class="far fa-circle text-primary"></i> Opera</li>
+                                                <li><i class="far fa-circle text-secondary"></i> Navigator</li>
+                                            </ul>
+                                        </div>
+                                        <!-- /.col -->
+                                    </div>
+                                    <!-- /.row -->
+                                </div>
+                                <!-- /.card-body -->
+
+                                <!-- /.footer -->
+                            </div>
+                            <!-- /.card -->
 
 
                         </div>
@@ -1561,27 +1384,175 @@
             el: '#app',
             data: {
                 messages: [],
-                estadisticas : {
-                    clientes_nuevos : 0,
-                    ganancias : 0,
-                    numero_clientes : 0,
-                    numero_ventas : 0
-                }
+                estadisticas: {
+                    clientes_nuevos: 0,
+                    ganancias: 0,
+                    numero_clientes: 0,
+                    numero_ventas: 0
+                },
+                estadisticas2: {
+                    costo_inventario: 0,
+                    productos_inventario: 0,
+                    ventas_neto: 0,
+                    ventas_bruto: 0
+                },
+                ultimasVentas: [],
+                ultimosProductosVendidos: [],
+                clientesConMasCompras: []
             },
-            mounted(){
+            mounted() {
                 this.getEstadisticasGenerales();
-            },  
+                this.getEstadisticasGenerales2();
+                this.getUltimasVentas();
+                this.getultimosProductosVendidos();
+                this.getclientesConMasCompras();
+                this.getGraficaProductosMasVendidos();
+                this.getGraficaProductosMenossVendidos();
+            },
             methods: {
-                async getEstadisticasGenerales(){
-                    
+                async getEstadisticasGenerales() {
+
                     let peticion = await fetch('/api/estadisticasGenerales');
 
                     let response = await peticion.json();
 
                     this.estadisticas = response;
 
-                    console.log(response);
+                },
+                async getEstadisticasGenerales2() {
 
+                    let peticion = await fetch('/api/estadisticasGenerales2');
+
+                    let response = await peticion.json();
+
+                    this.estadisticas2 = response;
+
+                },
+                async getUltimasVentas() {
+
+                    let peticion = await fetch('/api/ultimasVentas');
+
+                    let response = await peticion.json();
+
+                    this.ultimasVentas = response;
+
+                },
+                async getultimosProductosVendidos() {
+
+                    let peticion = await fetch('/api/ultimosProductosVendidos');
+
+                    let response = await peticion.json();
+
+                    this.ultimosProductosVendidos = response;
+                },
+                async getclientesConMasCompras() {
+
+                    let peticion = await fetch('/api/clientesConMasCompras');
+
+                    let response = await peticion.json();
+
+                    this.clientesConMasCompras = response;
+                },
+                async getGraficaProductosMasVendidos() {
+
+                    let peticion = await fetch('/api/productosMasVendidos');
+
+                    let response = await peticion.json();
+
+                    let pieChartCanvas = $('#pieChart').get(0).getContext('2d')
+
+                    let labels = [];
+                    let data = [];
+                    let textColors = ['danger', 'success', 'warning', 'info', 'primary', 'secondary'];
+
+                    let listProductodMasVendidos = document.getElementById('listProductodMasVendidos');
+                    listProductodMasVendidos.innerHTML = '';
+
+                    let i = 0;
+                    for (let item of response) {
+                        labels.push(item.producto.nombre);
+                        data.push(item.total_ventas);
+
+                        listProductodMasVendidos.innerHTML +=
+                            `<li><i class="far fa-circle text-${textColors[i]}"></i> ${item.producto.nombre}</li>`;
+                        i++;
+                    }
+
+                    let pieData = {
+                        labels: labels,
+                        datasets: [{
+                            data: data,
+                            backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef',
+                                '#3c8dbc', '#d2d6de'
+                            ]
+                        }]
+                    }
+                    let pieOptions = {
+                        legend: {
+                            display: false
+                        }
+                    }
+                    // Create pie or douhnut chart
+                    // You can switch between pie and douhnut using the method below.
+                    // eslint-disable-next-line no-unused-vars
+                    let pieChart = new Chart(pieChartCanvas, {
+                        type: 'doughnut',
+                        data: pieData,
+                        options: pieOptions
+                    })
+
+                },
+                async getGraficaProductosMenossVendidos() {
+
+                    let peticion = await fetch('/api/productosMenosVendidos');
+
+                    let response = await peticion.json();
+
+                    let pieChartCanvas2 = $('#pieChart2').get(0).getContext('2d')
+
+                    let labels = [];
+                    let data = [];
+                    let textColors = ['danger', 'success', 'warning', 'info', 'primary', 'secondary'];
+
+                    let listProductodMasVendidos = document.getElementById('listProductodMenosVendidos');
+                    listProductodMasVendidos.innerHTML = '';
+
+                    let i = 0;
+                    for (let item of response) {
+                        labels.push(item.producto.nombre);
+                        data.push(item.total_ventas);
+
+                        listProductodMasVendidos.innerHTML +=
+                            `<li><i class="far fa-circle text-${textColors[i]}"></i> ${item.producto.nombre}</li>`;
+                        i++;
+                    }
+
+                    let pieData = {
+                        labels: labels,
+                        datasets: [{
+                            data: data,
+                            backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef',
+                                '#3c8dbc', '#d2d6de'
+                            ]
+                        }]
+                    }
+                    let pieOptions = {
+                        legend: {
+                            display: false
+                        }
+                    }
+                    // Create pie or douhnut chart
+                    // You can switch between pie and douhnut using the method below.
+                    // eslint-disable-next-line no-unused-vars
+                    let pieChart2 = new Chart(pieChartCanvas2, {
+                        type: 'doughnut',
+                        data: pieData,
+                        options: pieOptions
+                    })
+
+                },
+                incrementarIndex(index) {
+                    return index + 1;
                 }
             }
         });

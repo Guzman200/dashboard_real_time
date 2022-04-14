@@ -10,5 +10,12 @@ class DetalleVenta extends Model
     use HasFactory;
 
     protected $table = "detalle_venta";
-    protected $guarded = [];    
+    protected $guarded = [];   
+    
+    /** Relaciones */
+
+    public function producto()
+    {
+        return $this->belongsTo(Producto::class, 'producto_id', 'id');
+    }
 }

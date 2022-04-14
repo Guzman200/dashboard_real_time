@@ -11,4 +11,16 @@ class Venta extends Model
 
     protected $table = "ventas";
     protected $guarded = [];    
+
+    /** Relaciones */
+
+    public function cliente()
+    {
+        return $this->belongsTo(Cliente::class, 'cliente_id', 'id');
+    }
+
+    public function formaPago()
+    {
+        return $this->belongsTo(FormaPago::class, 'forma_pago_id', 'id');
+    }
 }

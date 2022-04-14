@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cliente;
+use App\Models\DetalleVenta;
+use App\Models\ProductoSucursal;
 use App\Models\Venta;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -41,4 +43,98 @@ class EstadisticasController extends Controller
             'numero_clientes' => $numero_clientes
         ]);
     }
+
+    /**
+     * 
+     * @return {
+     *            "costo_inventario"     : value,
+     *            "productos_inventario" : value,
+     *            "ventas_neto"          : value,
+     *            "ventas_bruto"         :  value
+     *         }
+     */
+    public function estadisticasGenerales2()
+    {
+        $costo_inventario = DB::select('select sum( precio_compra * stock ) as costo_inventario
+        from productos_sucursal')[0];
+
+        $productos_inventario = DB::select('select sum(stock) as productos_inventario
+        from productos_sucursal')[0];
+
+        $ventas_neto = DB::select('select sum( precio_compra * cantidad ) as ventas_neto
+                    from detalle_venta')[0];
+
+        $ventas_bruto = DB::select('select sum( precio_venta * cantidad ) as ventas_bruto
+                    from detalle_venta')[0];
+
+        return response()->json([
+            'costo_inventario'     => $costo_inventario->costo_inventario,
+            'productos_inventario' => $productos_inventario->productos_inventario,
+            'ventas_neto'          => $ventas_neto->ventas_neto,
+            'ventas_bruto'         => $ventas_bruto->ventas_bruto
+        ]);
+    }
+
+    public function ultimasVentas()
+    {
+        $ventas = Venta::with(['cliente', 'formaPago'])->orderBy('created_at', 'DESC')->take(7)->get();
+
+        return response()->json($ventas);
+    }
+
+    public function ultimosProductosVendidos()
+    {
+
+        $detalle = DetalleVenta::select(['producto_id'])->with(['producto'])->distinct()->orderBy('created_at', 'DESC')->take(4)->get();
+
+        return response()->json($detalle);
+    }
+
+    public function clientesConMasCompras()
+    {
+
+        $detalle = Venta::select([
+            
+            'cliente_id',
+            DB::raw('COUNT(*) as total_ventas')
+        ])
+        ->with(['cliente'])
+        ->groupBy('cliente_id')
+        ->orderBy('total_ventas', 'DESC')
+        ->take(8)
+        ->get();
+
+        return response()->json($detalle);
+    }
+
+    public function productosMasVendidos()
+    {
+        $productos = DetalleVenta::select([
+            'producto_id',
+            DB::raw('SUM(cantidad) as total_ventas')
+        ])
+        ->with(['producto'])
+        ->groupBy('producto_id')
+        ->orderBy('total_ventas', 'DESC')
+        ->take(6)
+        ->get();
+
+        return response()->json($productos);
+    }
+
+    public function productosMenosVendidos()
+    {
+        $productos = DetalleVenta::select([
+            'producto_id',
+            DB::raw('SUM(cantidad) as total_ventas')
+        ])
+        ->with(['producto'])
+        ->groupBy('producto_id')
+        ->orderBy('total_ventas', 'ASC')
+        ->take(6)
+        ->get();
+
+        return response()->json($productos);
+    }
+
 }

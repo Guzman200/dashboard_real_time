@@ -22,3 +22,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::get('estadisticasGenerales', [EstadisticasController::class, 'estadisticasGenerales']);
+
+Route::get('estadisticasGenerales2', [EstadisticasController::class, 'estadisticasGenerales2']);
+
+Route::get('ultimasVentas', [EstadisticasController::class, 'ultimasVentas']);
+
+Route::get('ultimosProductosVendidos', [EstadisticasController::class, 'ultimosProductosVendidos']);
+
+Route::get('clientesConMasCompras', [EstadisticasController::class, 'clientesConMasCompras']);
+
+Route::get('productosMasVendidos', [EstadisticasController::class, 'productosMasVendidos']);
+
+Route::get('productosMenosVendidos', [EstadisticasController::class, 'productosMenosVendidos']);
