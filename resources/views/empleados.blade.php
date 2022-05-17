@@ -812,40 +812,27 @@
                     </div><!-- /.row -->
                 </div>
             </div>
-            <section class="content">
-                <div class="card">
-                    <div class="card-header">
-                        <button type="button" class="btn  btn-primary">Agregar Empleado</button>
-                    </div>
-                    <!-- /.card-header -->
-                    
-                        <!-- INSERTAR TABLA -->
-                        <div class="card-body" id="app">
-                            <table-employees></table-employees>
-                        </div>
-                    <!-- /.card-body -->
-                </div>
+            <section class="content" id="app">
+                <card-employees></card-employees>
+            </section>
+            <!-- /.content -->
         </div>
-        <!--/. container-fluid -->
-        </section>
-        <!-- /.content -->
-    </div>
-    <!-- /.content-wrapper -->
+        <!-- /.content-wrapper -->
 
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-        <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
 
-    <!-- Main Footer -->
-    <footer class="main-footer">
-        <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-        All rights reserved.
-        <div class="float-right d-none d-sm-inline-block">
-            <b>Version</b> 3.2.0
-        </div>
-    </footer>
+        <!-- Main Footer -->
+        <footer class="main-footer">
+            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
+            All rights reserved.
+            <div class="float-right d-none d-sm-inline-block">
+                <b>Version</b> 3.2.0
+            </div>
+        </footer>
     </div>
     <!-- ./wrapper -->
 
