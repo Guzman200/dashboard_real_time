@@ -9,6 +9,8 @@ Vue.use(Vuex)
 
 Vue.component('app', require('./components/App.vue').default);
 
+Vue.component('table-employees', require('./components/tableEmployees.vue').default);
+
 const store = new Vuex.Store({
     state: {
       products: [{
@@ -33,3 +35,4 @@ const app = new Vue({
     store,
     comments: { app }
 });
+

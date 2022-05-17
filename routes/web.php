@@ -18,6 +18,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/clientes', function () {
+    return view('clientes');
+});
+
+Route::get('/empleados', function () {
+    return view('empleados');
+});
+
+Route::get('/employees_list',[App\Http\Controllers\EmployeesController::class, 'list'])->name('employees_list');
 
 Route::get('test', function(){
 
