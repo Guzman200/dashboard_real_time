@@ -26,7 +26,19 @@ Route::get('/empleados', function () {
     return view('empleados');
 });
 
+Route::get('/sucursales', function () {
+    return view('sucursales');
+});
+
+Route::get('/areas', function () {
+    return view('areas');
+});
+
 Route::get('/employees_list',[App\Http\Controllers\EmployeesController::class, 'list'])->name('employees_list');
+
+Route::get('/sucursal_list',[App\Http\Controllers\SucursalesController::class, 'list'])->name('sucursal_list');
+
+Route::get('/area_list',[App\Http\Controllers\AreasController::class, 'list'])->name('area_list');
 
 Route::get('test', function(){
 

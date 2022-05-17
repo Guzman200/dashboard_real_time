@@ -2,16 +2,16 @@
 
     <div class="card">
         <div class="card-header">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEmpleados">
-                Agregar Empleado</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalArea">
+                Agregar Area</button>
         </div>
         <!-- /.card-header -->
 
-        <div class="modal fade" id="modalEmpleados">
+        <div class="modal fade" id="modalArea">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">Agregar Empleado</h4>
+                        <h4 class="modal-title">Agregar Area</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -20,37 +20,8 @@
                         <form>
                             <div class="form-group">
                                 <label class="form-label">Nombre</label>
-                                <input type="text" class="form-control" id="nombres" placeholder="Ingresa el nombre">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Apellido Paterno</label>
-                                <input type="text" class="form-control" id="aPaterno"
-                                    placeholder="Ingresa el apellido paterno">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Apellido Materno</label>
-                                <input type="text" class="form-control" id="aMaterno"
-                                    placeholder="Ingresa el apellido materno">
-                            </div>
-                            <div class="form-group">
-                                <label>Sucursal</label>
-                                <select class="form-control">
-                                    <option>Sucursal 1</option>
-                                    <option>Sucursal 2</option>
-                                    <option>Sucursal 3</option>
-                                    <option>Sucursal 4</option>
-                                    <option>Sucursal 5</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Area</label>
-                                <select class="form-control">
-                                    <option>Area 1</option>
-                                    <option>Area 2</option>
-                                    <option>Area 3</option>
-                                    <option>Area 4</option>
-                                    <option>Area 5</option>
-                                </select>
+                                <input type="text" class="form-control" id="nombre"
+                                    placeholder="Ingresa el nombre">
                             </div>
                         </form>
                     </div>
@@ -66,22 +37,18 @@
         <!-- /.modal -->
 
         <div class="card-body">
-            <table class="table table-bordered table-striped" id="empleados">
+            <table class="table table-bordered table-striped" id="areas">
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Nombre del Empleado</th>
-                        <th>Sucursal</th>
                         <th>Area</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="employee in employees" :key="employee.id">
-                        <td>{{employee.id}}</td>
-                        <td>{{employee.nombre}}</td>
-                        <td>{{employee.sucursal_id}}</td>
-                        <td>{{employee.area_id}}</td>
+                    <tr v-for="area in areas" :key="area.id">
+                        <td>{{area.id}}</td>
+                        <td>{{area.nombre}}</td>
                         <td class="text-center">
                             <button class="btn btn-warning btn-sm">
                                 <i class="nav-icon fas fa-pencil-alt"></i><span> Editar</span>
@@ -104,17 +71,17 @@
     export default {
 
         mounted() {
-            this.getEmployees();
+            this.getAreas();
         },
         data() {
             return {
-                employees: []
+                areas: []
             }
         },
         methods: {
             tabla() {
                 this.$nextTick(() => {
-                    $('#empleados').DataTable({
+                    $('#areas').DataTable({
                         language: {
                             "decimal": "",
                             "emptyTable": "No hay información",
@@ -138,9 +105,9 @@
                     });
                 });
             },
-            getEmployees() {
-                axios.get('employees_list').then(res => {
-                    this.employees = res.data
+            getAreas() {
+                axios.get('area_list').then(res => {
+                    this.areas = res.data
                     this.tabla();
                 });
             }
