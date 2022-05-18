@@ -734,58 +734,32 @@
                     </div><!-- /.row -->
                 </div>
             </div>
-            <section class="content">
-                <div class="card">
-                    <div class="card-header">
-                        <button type="button" class="btn  btn-primary">Agregar Cliente</button>
-                    </div>
-                    <!-- /.card-header -->
-                    <div class="card-body">
-                        <table id="clientes" class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Nombre</th>
-                                    <th>Telefono</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Amado</td>
-                                    <td>9621409088</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Amado</td>
-                                    <td>9621409088</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <!-- /.card-body -->
-                </div>
-        </div>
-        <!--/. container-fluid -->
-        </section>
-        <!-- /.content -->
-    </div>
-    <!-- /.content-wrapper -->
 
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-        <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
+            <!-- CARD DE CLIENTES -->
 
-    <!-- Main Footer -->
-    <footer class="main-footer">
-        <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-        All rights reserved.
-        <div class="float-right d-none d-sm-inline-block">
-            <b>Version</b> 3.2.0
+            <section class="content" id="app">
+
+                <card-clients></card-clients>
+
+            </section>
+            <!-- /.content -->
         </div>
-    </footer>
+        <!-- /.content-wrapper -->
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+
+        <!-- Main Footer -->
+        <footer class="main-footer">
+            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
+            All rights reserved.
+            <div class="float-right d-none d-sm-inline-block">
+                <b>Version</b> 3.2.0
+            </div>
+        </footer>
     </div>
     <!-- ./wrapper -->
 
@@ -826,10 +800,9 @@
     <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
     <!-- development version, includes helpful console warnings -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-    <script>
-        $('#clientes').DataTable();
 
-    </script>
+    <script src="{{ asset('./js/app.js')}}"></script>
+
 </body>
 
 </html>

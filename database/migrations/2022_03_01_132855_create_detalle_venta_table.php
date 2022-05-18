@@ -22,8 +22,12 @@ class CreateDetalleVentaTable extends Migration
             $table->integer('cantidad');
             $table->timestamps();
 
-            $table->foreign('venta_id')->references('id')->on('ventas');
-            $table->foreign('producto_id')->references('id')->on('productos');
+            $table->foreign('venta_id')->references('id')
+                ->on('ventas')
+                ->onDelete('cascade');
+            $table->foreign('producto_id')->references('id')
+                ->on('productos')
+                ->onDelete('cascade');
         });
 
     }

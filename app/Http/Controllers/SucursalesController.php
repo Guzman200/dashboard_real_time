@@ -12,4 +12,18 @@ class SucursalesController extends Controller
         return Sucursal::all();
     }
 
+    public function store(Request $request){
+
+        return Sucursal::create([
+            'nombre' => $request['nombre'],
+            'estado' => $request['estado'],
+            'ciudad' => $request['ciudad'],
+            'cp' => $request['cp']
+        ]);
+    }
+
+    public function delete(Sucursal $idSucursal){
+        $idSucursal->delete();
+    }
+
 }

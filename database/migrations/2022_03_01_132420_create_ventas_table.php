@@ -22,10 +22,18 @@ class CreateVentasTable extends Migration
             $table->float('total');
             $table->timestamps();
 
-            $table->foreign('sucursal_id')->references('id')->on('sucursales');
-            $table->foreign('empleado_id')->references('id')->on('empleados');
-            $table->foreign('cliente_id')->references('id')->on('clientes');
-            $table->foreign('forma_pago_id')->references('id')->on('forma_pago');
+            $table->foreign('sucursal_id')->references('id')
+                ->on('sucursales')
+                ->onDelete('cascade');
+            $table->foreign('empleado_id')->references('id')
+                ->on('empleados')
+                ->onDelete('cascade');
+            $table->foreign('cliente_id')->references('id')
+                ->on('clientes')
+                ->onDelete('cascade');
+            $table->foreign('forma_pago_id')->references('id')
+                ->on('forma_pago')
+                ->onDelete('cascade');
         });
     }
 

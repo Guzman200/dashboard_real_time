@@ -20,29 +20,30 @@
                         <form>
                             <div class="form-group">
                                 <label class="form-label">Nombre</label>
-                                <input type="text" class="form-control" id="nombre"
-                                    placeholder="Ingresa el nombre">
+                                <input type="text" class="form-control" id="nombre" placeholder="Ingresa el nombre"
+                                    v-model="newSucursal.nombre">
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Estado</label>
-                                <input type="text" class="form-control" id="estado"
-                                    placeholder="Ingresa el estado">
+                                <input type="text" class="form-control" id="estado" placeholder="Ingresa el estado"
+                                    v-model="newSucursal.estado">
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Ciudad</label>
-                                <input type="text" class="form-control" id="ciudad"
-                                    placeholder="Ingresa la ciudad">
+                                <input type="text" class="form-control" id="ciudad" placeholder="Ingresa la ciudad"
+                                    v-model="newSucursal.ciudad">
                             </div>
                             <div class="form-group">
                                 <label class="form-label">C.P.</label>
-                                <input type="text" class="form-control" id="cp"
-                                    placeholder="Ingresa el C.P.">
+                                <input type="text" class="form-control" id="cp" placeholder="Ingresa el C.P."
+                                    v-model="newSucursal.cp">
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer justify-content-between">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-primary">Guardar cambios</button>
+                        <button type="button" class="btn btn-primary" @click.prevent="createSucursal">
+                            Guardar</button>
                     </div>
                 </div>
                 <!-- /.modal-content -->
@@ -71,10 +72,7 @@
                         <td>{{sucursal.ciudad}}</td>
                         <td>{{sucursal.cp}}</td>
                         <td class="text-center">
-                            <button class="btn btn-warning btn-sm">
-                                <i class="nav-icon fas fa-pencil-alt"></i><span> Editar</span>
-                            </button>
-                            <button class="btn btn-danger btn-sm">
+                            <button class="btn btn-danger btn-sm" @click="deleteSucursal(sucursal)">
                                 <i class="nav-icon fas fa-trash"></i><span> Eliminar</span>
                             </button>
                         </td>
@@ -88,6 +86,7 @@
 
 <script>
     import axios from 'axios';
+    import Swal from 'sweetalert2'
 
     export default {
 
@@ -96,7 +95,14 @@
         },
         data() {
             return {
-                sucursales: []
+                sucursales: [],
+                newSucursal: {
+                    nombre: '',
+                    estado: '',
+                    ciudad: '',
+                    cp: ''
+
+                }
             }
         },
         methods: {
@@ -129,8 +135,50 @@
             getSucursales() {
                 axios.get('sucursal_list').then(res => {
                     this.sucursales = res.data
+                    $('#sucursales').DataTable().destroy()
                     this.tabla();
                 });
+            },
+            createSucursal() {
+                axios.post('create_sucursal', this.newSucursal).then(res => {
+                    this.getSucursales()
+                    this.newSucursal.nombre = '',
+                    this.newSucursal.estado = '',
+                    this.newSucursal.ciudad = '',
+                    this.newSucursal.cp = '',
+                    $('#modalSucursal').modal('hide')
+                    Swal.fire({
+                        icon: 'success',
+                        title: '¡Sucursal añadida!',
+                    })
+                });
+            },
+            deleteSucursal(datos) {
+                Swal.fire({
+
+                    title: '¿Estas Seguro?',
+                    text: "¡Esta accion no podra ser revertida!",
+                    icon: 'warning',
+                    cancelButtonText: 'Cancelar',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: '¡Sí, eliminar!'
+
+                }).then((result) => {
+                    if (result.isConfirmed) {
+
+                        axios.delete('delete_sucursal/' + datos.id).then(res => {
+                            this.getSucursales()
+                        });
+
+                        Swal.fire(
+                            '¡Sucursal Eliminada!',
+                            '',
+                            'success'
+                        )
+                    }
+                })
             }
         }
 

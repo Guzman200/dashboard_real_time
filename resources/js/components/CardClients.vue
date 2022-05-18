@@ -2,16 +2,16 @@
 
     <div class="card">
         <div class="card-header">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEmpleados">
-                Agregar Empleado</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalClientes">
+                Agregar Cliente</button>
         </div>
         <!-- /.card-header -->
 
-        <div class="modal fade" id="modalEmpleados">
+        <div class="modal fade" id="modalClientes">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">Agregar Empleado</h4>
+                        <h4 class="modal-title">Agregar Cliente</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -21,44 +21,28 @@
                             <div class="form-group">
                                 <label class="form-label">Nombre</label>
                                 <input type="text" class="form-control" id="nombres" placeholder="Ingresa el nombre"
-                                    v-model="newEmployee.nombre">
+                                    v-model="newClient.nombre">
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Apellido Paterno</label>
                                 <input type="text" class="form-control" id="a_paterno"
-                                    placeholder="Ingresa el apellido paterno" v-model="newEmployee.a_paterno">
+                                    placeholder="Ingresa el apellido paterno" v-model="newClient.a_paterno">
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Apellido Materno</label>
                                 <input type="text" class="form-control" id="a_materno"
-                                    placeholder="Ingresa el apellido materno" v-model="newEmployee.a_materno">
+                                    placeholder="Ingresa el apellido materno" v-model="newClient.a_materno">
                             </div>
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label>Sucursal</label>
-                                        <select class="form-control" v-model="newEmployee.sucursal_id">
-                                            <option v-for="sucursal in sucursales" :key="sucursal.id"
-                                                v-bind:value="sucursal.id">
-                                                {{sucursal.nombre}}</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label>Area</label>
-                                        <select class="form-control" v-model="newEmployee.area_id">
-                                            <option v-for="area in areas" :key="area.id" v-bind:value="area.id">
-                                                {{area.nombre}}</option>
-                                        </select>
-                                    </div>
-                                </div>
+                            <div class="form-group">
+                                <label class="form-label">Telefono</label>
+                                <input type="text" class="form-control" id="telefono" placeholder="Ingresa el telefono"
+                                    v-model="newClient.telefono">
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer justify-content-between">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-primary" @click.prevent="createEmployee">
+                        <button type="button" class="btn btn-primary" @click.prevent="createClient">
                             Guardar</button>
                     </div>
                 </div>
@@ -69,24 +53,22 @@
         <!-- /.modal -->
 
         <div class="card-body">
-            <table class="table table-bordered table-striped" id="empleados">
+            <table class="table table-bordered table-striped" id="clientes">
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Nombre del Empleado</th>
-                        <th>Sucursal</th>
-                        <th>Area</th>
+                        <th>Telefono</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="employee in employees" :key="employee.id">
-                        <td>{{employee.id}}</td>
-                        <td>{{employee.nombre}} {{employee.a_paterno}} {{employee.a_materno}}</td>
-                        <td>{{employee.sucursal}}</td>
-                        <td>{{employee.area}}</td>
+                    <tr v-for="client in clients" :key="client.id">
+                        <td>{{client.id}}</td>
+                        <td>{{client.nombre}} {{client.a_paterno}} {{client.a_materno}}</td>
+                        <td>{{client.telefono}}</td>
                         <td class="text-center">
-                            <button class="btn btn-danger btn-sm" @click="deleteEmployee(employee)">
+                            <button class="btn btn-danger btn-sm" @click="deleteClient(client)">
                                 <i class="nav-icon fas fa-trash"></i><span> Eliminar</span>
                             </button>
                         </td>
@@ -105,21 +87,16 @@
     export default {
 
         mounted() {
-            this.getEmployees();
-            this.getSucursales();
-            this.getAreas();
+            this.getClients();
         },
         data() {
             return {
-                employees: [],
-                sucursales: [],
-                areas: [],
-                newEmployee: {
+                clients: [],
+                newClient: {
                     nombre: '',
                     a_paterno: '',
                     a_materno: '',
-                    sucursal_id: '',
-                    area_id: ''
+                    telefono: ''
 
                 }
             }
@@ -127,7 +104,7 @@
         methods: {
             tabla() {
                 this.$nextTick(() => {
-                    $('#empleados').DataTable({
+                    $('#clientes').DataTable({
                         language: {
                             "decimal": "",
                             "emptyTable": "No hay información",
@@ -151,29 +128,28 @@
                     });
                 });
             },
-            getEmployees() {
-                axios.get('employees_list').then(res => {
-                    this.employees = res.data
-                    $('#empleados').DataTable().destroy()
+            getClients() {
+                axios.get('clients_list').then(res => {
+                    this.clients = res.data
+                    $('#clientes').DataTable().destroy()
                     this.tabla();
                 });
             },
-            createEmployee() {
-                axios.post('create_employee', this.newEmployee).then(res => {
-                    this.getEmployees()
-                    this.newEmployee.nombre = '',
-                    this.newEmployee.a_paterno = '',
-                    this.newEmployee.a_materno = '',
-                    this.newEmployee.sucursal_id = '',
-                    this.newEmployee.area_id = '',
-                    $('#modalEmpleados').modal('hide')
+            createClient() {
+                axios.post('create_client', this.newClient).then(res => {
+                    this.getClients()
+                    this.newClient.nombre = '',
+                    this.newClient.a_paterno = '',
+                    this.newClient.a_materno ='',
+                    this.newClient.telefono = '',
+                    $('#modalClientes').modal('hide')
                     Swal.fire({
                         icon: 'success',
-                        title: '¡Empleado añadido!',
+                        title: '¡Cliente añadido!',
                     })
                 });
             },
-            deleteEmployee(datos) {
+            deleteClient(datos) {
                 Swal.fire({
 
                     title: '¿Estas Seguro?',
@@ -188,27 +164,17 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
 
-                        axios.delete('delete_employee/' + datos.id).then(res => {
-                            this.getEmployees()
+                        axios.delete('delete_client/' + datos.id).then(res => {
+                            this.getClients()
                         });
 
                         Swal.fire(
-                            '¡Empleado Eliminado!',
+                            '¡Cliente Eliminado!',
                             '',
                             'success'
                         )
                     }
                 })
-            },
-            getSucursales() {
-                axios.get('sucursal_list').then(res => {
-                    this.sucursales = res.data
-                });
-            },
-            getAreas() {
-                axios.get('area_list').then(res => {
-                    this.areas = res.data
-                });
             }
         }
 

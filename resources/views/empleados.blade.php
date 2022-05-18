@@ -734,8 +734,13 @@
                     </div><!-- /.row -->
                 </div>
             </div>
+
+            <!-- CARD DE EMPLEADOS -->
+
             <section class="content" id="app">
+
                 <card-employees></card-employees>
+
             </section>
             <!-- /.content -->
         </div>

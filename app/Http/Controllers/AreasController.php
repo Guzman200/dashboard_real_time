@@ -12,4 +12,15 @@ class AreasController extends Controller
         return Area::all();
     }
 
+    public function store(Request $request){
+
+        return Area::create([
+            'nombre' => $request['nombre']
+        ]);
+    }
+
+    public function delete(Area $idArea){
+        $idArea->delete();
+    }
+
 }

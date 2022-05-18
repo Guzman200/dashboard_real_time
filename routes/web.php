@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\EmployeesController;
+use App\Http\Controllers\AreasController;
+use App\Http\Controllers\SucursalesController;
+use App\Http\Controllers\ClientsController;
+
 use App\Events\MyEvent;
 use Illuminate\Support\Facades\Route;
 
@@ -34,11 +39,26 @@ Route::get('/areas', function () {
     return view('areas');
 });
 
-Route::get('/employees_list',[App\Http\Controllers\EmployeesController::class, 'list'])->name('employees_list');
+//Rutas de empleados
+Route::get('/employees_list',[EmployeesController::class, 'list'])->name('employees_list');
+Route::post('/create_employee',[EmployeesController::class, 'store'])->name('create_employee');
+Route::delete('/delete_employee/{idEmployee}',[EmployeesController::class, 'delete'])->name('delete_employee');
 
-Route::get('/sucursal_list',[App\Http\Controllers\SucursalesController::class, 'list'])->name('sucursal_list');
+//Rutas de clientes
+Route::get('/clients_list',[ClientsController::class, 'list'])->name('clients_list');
+Route::post('/create_client',[ClientsController::class, 'store'])->name('create_client');
+Route::delete('/delete_client/{idClient}',[ClientsController::class, 'delete'])->name('delete_client');
 
-Route::get('/area_list',[App\Http\Controllers\AreasController::class, 'list'])->name('area_list');
+//Rutas de sucursales
+Route::get('/sucursal_list',[SucursalesController::class, 'list'])->name('sucursal_list');
+Route::post('/create_sucursal',[SucursalesController::class, 'store'])->name('create_sucursal');
+Route::delete('/delete_sucursal/{idSucursal}',[SucursalesController::class, 'delete'])->name('delete_sucursal');
+
+//Rutas de areas
+Route::get('/area_list',[AreasController::class, 'list'])->name('area_list');
+Route::post('/create_area',[AreasController::class, 'store'])->name('create_area');
+Route::delete('/delete_area/{idArea}',[AreasController::class, 'delete'])->name('delete_area');
+
 
 Route::get('test', function(){
 

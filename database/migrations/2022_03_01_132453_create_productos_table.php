@@ -24,10 +24,12 @@ class CreateProductosTable extends Migration
             $table->timestamps();
 
             $table->foreign('area_id')->references('id')
-                ->on('areas');
+                ->on('areas')
+                ->onDelete('cascade');
 
             $table->foreign('categoria_id')->references('id')
-                ->on('categorias');
+                ->on('categorias')
+                ->onDelete('cascade');
         });
     }
 

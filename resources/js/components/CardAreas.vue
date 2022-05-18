@@ -20,14 +20,15 @@
                         <form>
                             <div class="form-group">
                                 <label class="form-label">Nombre</label>
-                                <input type="text" class="form-control" id="nombre"
-                                    placeholder="Ingresa el nombre">
+                                <input type="text" class="form-control" id="nombre" placeholder="Ingresa el nombre"
+                                    v-model="newArea.nombre">
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer justify-content-between">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-primary">Guardar cambios</button>
+                        <button type="button" class="btn btn-primary" @click.prevent="createArea">
+                            Guardar</button>
                     </div>
                 </div>
                 <!-- /.modal-content -->
@@ -50,10 +51,7 @@
                         <td>{{area.id}}</td>
                         <td>{{area.nombre}}</td>
                         <td class="text-center">
-                            <button class="btn btn-warning btn-sm">
-                                <i class="nav-icon fas fa-pencil-alt"></i><span> Editar</span>
-                            </button>
-                            <button class="btn btn-danger btn-sm">
+                            <button class="btn btn-danger btn-sm" @click="deleteArea(area)">
                                 <i class="nav-icon fas fa-trash"></i><span> Eliminar</span>
                             </button>
                         </td>
@@ -67,6 +65,7 @@
 
 <script>
     import axios from 'axios';
+    import Swal from 'sweetalert2'
 
     export default {
 
@@ -75,7 +74,10 @@
         },
         data() {
             return {
-                areas: []
+                areas: [],
+                newArea: {
+                    nombre: ''
+                }
             }
         },
         methods: {
@@ -108,8 +110,47 @@
             getAreas() {
                 axios.get('area_list').then(res => {
                     this.areas = res.data
+                    $('#areas').DataTable().destroy()
                     this.tabla();
                 });
+            },
+            createArea() {
+                axios.post('create_area', this.newArea).then(res => {
+                    this.getAreas()
+                    this.newArea.nombre = '',
+                    $('#modalArea').modal('hide')
+                    Swal.fire({
+                        icon: 'success',
+                        title: '¡Area añadida!',
+                    })
+                });
+            },
+            deleteArea(datos) {
+                Swal.fire({
+
+                    title: '¿Estas Seguro?',
+                    text: "¡Esta accion no podra ser revertida!",
+                    icon: 'warning',
+                    cancelButtonText: 'Cancelar',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: '¡Sí, eliminar!'
+
+                }).then((result) => {
+                    if (result.isConfirmed) {
+
+                        axios.delete('delete_area/' + datos.id).then(res => {
+                            this.getAreas()
+                        });
+
+                        Swal.fire(
+                            '¡Area Eliminada!',
+                            '',
+                            'success'
+                        )
+                    }
+                })
             }
         }
 

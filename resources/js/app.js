@@ -11,6 +11,8 @@ Vue.component('app', require('./components/App.vue').default);
 
 Vue.component('card-employees', require('./components/CardEmployees.vue').default);
 
+Vue.component('card-clients', require('./components/CardClients.vue').default);
+
 Vue.component('card-sucursales', require('./components/CardSucursales.vue').default);
 
 Vue.component('card-areas', require('./components/CardAreas.vue').default);

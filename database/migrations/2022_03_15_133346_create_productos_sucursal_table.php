@@ -21,8 +21,12 @@ class CreateProductosSucursalTable extends Migration
             $table->integer('stock');
             $table->timestamps();
 
-            $table->foreign('sucursal_id')->references('id')->on('sucursales');
-            $table->foreign('producto_id')->references('id')->on('productos');
+            $table->foreign('sucursal_id')->references('id')
+                ->on('sucursales')
+                ->onDelete('cascade');
+            $table->foreign('producto_id')->references('id')
+                ->on('productos')
+                ->onDelete('cascade');
         });
     }
 

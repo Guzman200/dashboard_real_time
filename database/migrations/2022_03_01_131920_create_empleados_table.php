@@ -23,10 +23,12 @@ class CreateEmpleadosTable extends Migration
             $table->timestamps();
 
             $table->foreign('sucursal_id')->references('id')
-                ->on('sucursales');
+                ->on('sucursales')
+                ->onDelete('cascade');
 
             $table->foreign('area_id')->references('id')
-                ->on('areas');
+                ->on('areas')
+                ->onDelete('cascade');
         });
     }
 
