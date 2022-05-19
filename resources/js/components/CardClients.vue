@@ -59,7 +59,7 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Nombre del Empleado</th>
+                        <th>Nombre del Cliente</th>
                         <th>Telefono</th>
                         <th>Acciones</th>
                     </tr>
