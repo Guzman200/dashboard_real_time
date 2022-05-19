@@ -251,309 +251,311 @@
                     </div> --}}
 
                     <!-- /.card-footer -->
-                </div>
-                <!-- /.card -->
-        </div>
-        <!-- /.col -->
-    </div>
-    <!-- /.row -->
-
-    <!-- Main row -->
-    <div class="row">
-        <!-- Left col -->
-        <div class="col-md-8">
-
-            <div class="row">
-                <div class="col-md-6">
-
-
-                    <!-- PRODUCT LIST -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Ultimos productos vendidos</h3>
-
-                            <div class="card-tools">
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-                                <button type="button" class="btn btn-tool" data-card-widget="remove">
-                                    <i class="fas fa-times"></i>
-                                </button>
                             </div>
+                            <!-- /.card -->
                         </div>
-                        <!-- /.card-header -->
-                        <div class="card-body p-0">
-                            <ul class="products-list product-list-in-card pl-2 pr-2">
-                                <li class="item" v-for="(detalle, index) in ultimosProductosVendidos">
-                                    <div class="product-img">
-                                        <img src="dist/img/default-150x150.png" alt="Product Image" class="img-size-50">
-                                    </div>
-                                    <div class="product-info">
-                                        <a href="javascript:void(0)"
-                                            class="product-title">@{{ detalle . producto . nombre }}
-                                            <span
-                                                class="badge badge-warning float-right">$@{{ detalle . producto . precio_venta }}</span></a>
-                                        <span class="product-description">
-                                            @{{ detalle . producto . marca }}
-                                        </span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- /.card-body -->
-                        <div class="card-footer text-center">
-                            <a href="javascript:void(0)" class="uppercase">Ver todos los productos</a>
-                        </div>
-                        <!-- /.card-footer -->
+                        <!-- /.col -->
                     </div>
-                    <!-- /.card -->
-                    <!--/.direct-chat -->
+                    <!-- /.row -->
 
-                </div>
-                <!-- /.col -->
+                    <!-- Main row -->
+                    <div class="row">
+                        <!-- Left col -->
+                        <div class="col-md-8">
 
-                <!-- CLIENTES CON MAS COMPRAS -->
-                <div class="col-md-6">
-                    <!-- USERS LIST -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Clientes con más compras</h3>
+                            <div class="row">
+                                <div class="col-md-6">
 
-                            <div class="card-tools">
-                                <span class="badge badge-danger">$</span>
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-                                <button type="button" class="btn btn-tool" data-card-widget="remove">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <!-- /.card-header -->
-                        <div class="card-body p-0">
-                            <ul class="users-list clearfix">
-                                <li v-for="(item, index) in clientesConMasCompras">
-                                    <img :src="'dist/img/user' + incrementarIndex(index) + '-128x128.jpg'"
-                                        alt="User Image">
-                                    <a class="users-list-name" href="#">@{{ item . cliente . nombre }}</a>
-                                    <span class="users-list-date">@{{ item . total_ventas }}
-                                        compras</span>
-                                </li>
 
-                            </ul>
-                            <!-- /.users-list -->
-                        </div>
+                                    <!-- PRODUCT LIST -->
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h3 class="card-title">Ultimos productos vendidos</h3>
 
-                    </div>
-                    <!--/.card -->
-                </div>
-                <!-- /.col -->
-            </div>
-            <!-- /.row -->
-
-            <!-- TABLE: LATEST ORDERS -->
-            <div class="card">
-                <div class="card-header border-transparent">
-                    <h3 class="card-title">Ultimas ventas realizadas</h3>
-
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                        <button type="button" class="btn btn-tool" data-card-widget="remove">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </div>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body p-0">
-                    <div class="table-responsive">
-                        <table class="table m-0">
-                            <thead>
-                                <tr>
-                                    <th>Order ID</th>
-                                    <th>Cliente</th>
-                                    <th>Status</th>
-                                    <th>Forma de pago</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr v-for="(venta, index) in ultimasVentas">
-                                    <td><a href="javascript:void(0)">0000-@{{ venta . id }}</a></td>
-                                    <td>@{{ venta . cliente . nombre }}</td>
-                                    <td><span class="badge badge-success">Pagada</span></td>
-                                    <td>
-                                        <div class="sparkbar" data-color="#00a65a" data-height="20">
-                                            @{{ venta . forma_pago . descripcion }}
+                                            <div class="card-tools">
+                                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                                    <i class="fas fa-minus"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                                    <i class="fas fa-times"></i>
+                                                </button>
+                                            </div>
                                         </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <!-- /.table-responsive -->
-                </div>
+                                        <!-- /.card-header -->
+                                        <div class="card-body p-0">
+                                            <ul class="products-list product-list-in-card pl-2 pr-2">
+                                                <li class="item" v-for="(detalle, index) in ultimosProductosVendidos">
+                                                    <div class="product-img">
+                                                        <img src="dist/img/default-150x150.png" alt="Product Image"
+                                                            class="img-size-50">
+                                                    </div>
+                                                    <div class="product-info">
+                                                        <a href="javascript:void(0)"
+                                                            class="product-title">@{{ detalle . producto . nombre }}
+                                                            <span
+                                                                class="badge badge-warning float-right">$@{{ detalle . producto . precio_venta }}</span></a>
+                                                        <span class="product-description">
+                                                            @{{ detalle . producto . marca }}
+                                                        </span>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- /.card-body -->
+                                        <div class="card-footer text-center">
+                                            <a href="javascript:void(0)" class="uppercase">Ver todos los productos</a>
+                                        </div>
+                                        <!-- /.card-footer -->
+                                    </div>
+                                    <!-- /.card -->
+                                    <!--/.direct-chat -->
 
-            </div>
-            <!-- /.card -->
-        </div>
-        <!-- /.col -->
+                                </div>
+                                <!-- /.col -->
 
-        <div class="col-md-4">
-            <!-- Info Boxes Style 2 -->
-            <div class="info-box mb-3 bg-warning">
-                <span class="info-box-icon"><i class="fas fa-tag"></i></span>
+                                <!-- CLIENTES CON MAS COMPRAS -->
+                                <div class="col-md-6">
+                                    <!-- USERS LIST -->
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h3 class="card-title">Clientes con más compras</h3>
 
-                <div class="info-box-content">
-                    <span class="info-box-text">Costo en inventario</span>
-                    <span class="info-box-number">@{{estadisticas2.costo_inventario}}</span>
-                </div>
-                <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-            <div class="info-box mb-3 bg-success">
-                <span class="info-box-icon"><i class="far fa-heart"></i></span>
+                                            <div class="card-tools">
+                                                <span class="badge badge-danger">$</span>
+                                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                                    <i class="fas fa-minus"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                                    <i class="fas fa-times"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <!-- /.card-header -->
+                                        <div class="card-body p-0">
+                                            <ul class="users-list clearfix">
+                                                <li v-for="(item, index) in clientesConMasCompras">
+                                                    <img :src="'dist/img/user' + incrementarIndex(index) + '-128x128.jpg'"
+                                                        alt="User Image">
+                                                    <a class="users-list-name"
+                                                        href="#">@{{ item . cliente . nombre }}</a>
+                                                    <span class="users-list-date">@{{ item . total_ventas }}
+                                                        compras</span>
+                                                </li>
 
-                <div class="info-box-content">
-                    <span class="info-box-text">Productos en inventario</span>
-                    <span class="info-box-number">@{{estadisticas2.productos_inventario}}</span>
-                </div>
-                <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-            <div class="info-box mb-3 bg-danger">
-                <span class="info-box-icon"><i class="fas fa-dollar-sign"></i></span>
+                                            </ul>
+                                            <!-- /.users-list -->
+                                        </div>
 
-                <div class="info-box-content">
-                    <span class="info-box-text">Total de ventas neto</span>
-                    <span class="info-box-number">@{{estadisticas2.ventas_neto}}</span>
-                </div>
-                <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-            <div class="info-box mb-3 bg-info">
-                <span class="info-box-icon"><i class="fas fa-dollar-sign"></i></span>
-
-                <div class="info-box-content">
-                    <span class="info-box-text">Total de ventas bruto</span>
-                    <span class="info-box-number">@{{estadisticas2.ventas_bruto}}</span>
-                </div>
-                <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Productos más vendidos</h3>
-
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                        <button type="button" class="btn btn-tool" data-card-widget="remove">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </div>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-8">
-                            <div class="chart-responsive">
-                                <canvas id="pieChart" height="150"></canvas>
+                                    </div>
+                                    <!--/.card -->
+                                </div>
+                                <!-- /.col -->
                             </div>
-                            <!-- ./chart-responsive -->
+                            <!-- /.row -->
+
+                            <!-- TABLE: LATEST ORDERS -->
+                            <div class="card">
+                                <div class="card-header border-transparent">
+                                    <h3 class="card-title">Ultimas ventas realizadas</h3>
+
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body p-0">
+                                    <div class="table-responsive">
+                                        <table class="table m-0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Order ID</th>
+                                                    <th>Cliente</th>
+                                                    <th>Status</th>
+                                                    <th>Forma de pago</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr v-for="(venta, index) in ultimasVentas">
+                                                    <td><a href="javascript:void(0)">0000-@{{ venta . id }}</a></td>
+                                                    <td>@{{ venta . cliente . nombre }}</td>
+                                                    <td><span class="badge badge-success">Pagada</span></td>
+                                                    <td>
+                                                        <div class="sparkbar" data-color="#00a65a" data-height="20">
+                                                            @{{ venta . forma_pago . descripcion }}
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- /.table-responsive -->
+                                </div>
+
+                            </div>
+                            <!-- /.card -->
                         </div>
                         <!-- /.col -->
+
                         <div class="col-md-4">
-                            <ul class="chart-legend clearfix" id="listProductodMasVendidos">
-                                <li><i class="far fa-circle text-danger"></i> Chrome</li>
-                                <li><i class="far fa-circle text-success"></i> IE</li>
-                                <li><i class="far fa-circle text-warning"></i> FireFox</li>
-                                <li><i class="far fa-circle text-info"></i> Safari</li>
-                                <li><i class="far fa-circle text-primary"></i> Opera</li>
-                                <li><i class="far fa-circle text-secondary"></i> Navigator</li>
-                            </ul>
+                            <!-- Info Boxes Style 2 -->
+                            <div class="info-box mb-3 bg-warning">
+                                <span class="info-box-icon"><i class="fas fa-tag"></i></span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Costo en inventario</span>
+                                    <span class="info-box-number">@{{ estadisticas2 . costo_inventario }}</span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+                            <div class="info-box mb-3 bg-success">
+                                <span class="info-box-icon"><i class="far fa-heart"></i></span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Productos en inventario</span>
+                                    <span class="info-box-number">@{{ estadisticas2 . productos_inventario }}</span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+                            <div class="info-box mb-3 bg-danger">
+                                <span class="info-box-icon"><i class="fas fa-dollar-sign"></i></span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Total de ventas neto</span>
+                                    <span class="info-box-number">@{{ estadisticas2 . ventas_neto }}</span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+                            <div class="info-box mb-3 bg-info">
+                                <span class="info-box-icon"><i class="fas fa-dollar-sign"></i></span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Total de ventas bruto</span>
+                                    <span class="info-box-number">@{{ estadisticas2 . ventas_bruto }}</span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Productos más vendidos</h3>
+
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="chart-responsive">
+                                                <canvas id="pieChart" height="150"></canvas>
+                                            </div>
+                                            <!-- ./chart-responsive -->
+                                        </div>
+                                        <!-- /.col -->
+                                        <div class="col-md-4">
+                                            <ul class="chart-legend clearfix" id="listProductodMasVendidos">
+                                                <li><i class="far fa-circle text-danger"></i> Chrome</li>
+                                                <li><i class="far fa-circle text-success"></i> IE</li>
+                                                <li><i class="far fa-circle text-warning"></i> FireFox</li>
+                                                <li><i class="far fa-circle text-info"></i> Safari</li>
+                                                <li><i class="far fa-circle text-primary"></i> Opera</li>
+                                                <li><i class="far fa-circle text-secondary"></i> Navigator</li>
+                                            </ul>
+                                        </div>
+                                        <!-- /.col -->
+                                    </div>
+                                    <!-- /.row -->
+                                </div>
+                                <!-- /.card-body -->
+
+                                <!-- /.footer -->
+                            </div>
+                            <!-- /.card -->
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Productos menos vendidos</h3>
+
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="chart-responsive">
+                                                <canvas id="pieChart2" height="150"></canvas>
+                                            </div>
+                                            <!-- ./chart-responsive -->
+                                        </div>
+                                        <!-- /.col -->
+                                        <div class="col-md-4">
+                                            <ul class="chart-legend clearfix" id="listProductodMenosVendidos">
+                                                <li><i class="far fa-circle text-danger"></i> Chrome</li>
+                                                <li><i class="far fa-circle text-success"></i> IE</li>
+                                                <li><i class="far fa-circle text-warning"></i> FireFox</li>
+                                                <li><i class="far fa-circle text-info"></i> Safari</li>
+                                                <li><i class="far fa-circle text-primary"></i> Opera</li>
+                                                <li><i class="far fa-circle text-secondary"></i> Navigator</li>
+                                            </ul>
+                                        </div>
+                                        <!-- /.col -->
+                                    </div>
+                                    <!-- /.row -->
+                                </div>
+                                <!-- /.card-body -->
+
+                                <!-- /.footer -->
+                            </div>
+                            <!-- /.card -->
+
+
                         </div>
                         <!-- /.col -->
                     </div>
                     <!-- /.row -->
                 </div>
-                <!-- /.card-body -->
-
-                <!-- /.footer -->
-            </div>
-            <!-- /.card -->
-
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Productos menos vendidos</h3>
-
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                        <button type="button" class="btn btn-tool" data-card-widget="remove">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </div>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-8">
-                            <div class="chart-responsive">
-                                <canvas id="pieChart2" height="150"></canvas>
-                            </div>
-                            <!-- ./chart-responsive -->
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-md-4">
-                            <ul class="chart-legend clearfix" id="listProductodMenosVendidos">
-                                <li><i class="far fa-circle text-danger"></i> Chrome</li>
-                                <li><i class="far fa-circle text-success"></i> IE</li>
-                                <li><i class="far fa-circle text-warning"></i> FireFox</li>
-                                <li><i class="far fa-circle text-info"></i> Safari</li>
-                                <li><i class="far fa-circle text-primary"></i> Opera</li>
-                                <li><i class="far fa-circle text-secondary"></i> Navigator</li>
-                            </ul>
-                        </div>
-                        <!-- /.col -->
-                    </div>
-                    <!-- /.row -->
-                </div>
-                <!-- /.card-body -->
-
-                <!-- /.footer -->
-            </div>
-            <!-- /.card -->
-
-
+                <!--/. container-fluid -->
+            </section>
+            <!-- /.content -->
         </div>
-        <!-- /.col -->
-    </div>
-    <!-- /.row -->
-    </div>
-    <!--/. container-fluid -->
-    </section>
-    <!-- /.content -->
-    </div>
-    <!-- /.content-wrapper -->
+        <!-- /.content-wrapper -->
 
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-        <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
 
-    <!-- Main Footer -->
-    <footer class="main-footer">
-        <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-        All rights reserved.
-        <div class="float-right d-none d-sm-inline-block">
-            <b>Version</b> 3.2.0
-        </div>
-    </footer>
+        <!-- Main Footer -->
+        <footer class="main-footer">
+            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
+            All rights reserved.
+            <div class="float-right d-none d-sm-inline-block">
+                <b>Version</b> 3.2.0
+            </div>
+        </footer>
     </div>
     <!-- ./wrapper -->
 
@@ -587,18 +589,6 @@
 
 
     <script>
-        // Enable pusher logging - don't include this in production
-        Pusher.logToConsole = true;
-
-        var pusher = new Pusher('e0ea4bf3b7146e6e24d9', {
-            cluster: 'us2'
-        });
-
-        var channel = pusher.subscribe('my-channel');
-        channel.bind('my-event', function (data) {
-            alert('Actualizando graficas ...')
-        });
-
         // Vue application
         const app = new Vue({
             el: '#app',
@@ -621,13 +611,23 @@
                 clientesConMasCompras: []
             },
             mounted() {
-                this.getEstadisticasGenerales();
-                this.getEstadisticasGenerales2();
-                this.getUltimasVentas();
-                this.getultimosProductosVendidos();
-                this.getclientesConMasCompras();
-                this.getGraficaProductosMasVendidos();
-                this.getGraficaProductosMenossVendidos();
+
+                this.cargarDatos();
+
+                // Enable pusher logging - don't include this in production
+                Pusher.logToConsole = true;
+
+                var pusher = new Pusher('e0ea4bf3b7146e6e24d9', {
+                    cluster: 'us2'
+                });
+
+                let self = this;
+
+                var channel = pusher.subscribe('my-channel');
+                channel.bind('my-event', function(data) {
+                    self.cargarDatos();
+                });
+
             },
             methods: {
                 async getEstadisticasGenerales() {
@@ -712,10 +712,16 @@
                             display: false
                         }
                     }
+
+                    if (window.productoMasVendidos) {
+                        window.productoMasVendidos.clear();
+                        window.productoMasVendidos.destroy();
+                    }
+
                     // Create pie or douhnut chart
                     // You can switch between pie and douhnut using the method below.
                     // eslint-disable-next-line no-unused-vars
-                    let pieChart = new Chart(pieChartCanvas, {
+                    window.productoMasVendidos = new Chart(pieChartCanvas, {
                         type: 'doughnut',
                         data: pieData,
                         options: pieOptions
@@ -761,10 +767,16 @@
                             display: false
                         }
                     }
+
+                    if (window.productoMenosVendidos) {
+                        window.productoMenosVendidos.clear();
+                        window.productoMenosVendidos.destroy();
+                    }
+
                     // Create pie or douhnut chart
                     // You can switch between pie and douhnut using the method below.
                     // eslint-disable-next-line no-unused-vars
-                    let pieChart2 = new Chart(pieChartCanvas2, {
+                    window.productoMenosVendidos = new Chart(pieChartCanvas2, {
                         type: 'doughnut',
                         data: pieData,
                         options: pieOptions
@@ -773,6 +785,16 @@
                 },
                 incrementarIndex(index) {
                     return index + 1;
+                },
+                cargarDatos() {
+                    this.getEstadisticasGenerales();
+                    this.getEstadisticasGenerales2();
+                    this.getUltimasVentas();
+                    this.getultimosProductosVendidos();
+                    this.getclientesConMasCompras();
+                    this.getGraficaProductosMasVendidos();
+                    this.getGraficaProductosMenossVendidos();
+
                 }
             }
         });

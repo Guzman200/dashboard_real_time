@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\MyEvent;
 use App\Models\DetalleVenta;
 use App\Models\Venta;
 use Illuminate\Http\Request;
@@ -33,6 +34,8 @@ class VentaController extends Controller
                 'cantidad'      => $producto['cantidad']
             ]);
         }
+
+        event(new MyEvent('hello world'));
 
 
         return response()->json([],200);
