@@ -101,7 +101,7 @@
                                 <div class="info-box-content">
                                     <span class="info-box-text">Ganancias</span>
                                     <span class="info-box-number">
-                                        @{{ estadisticas.ganancias }}
+                                        @{{ estadisticas . ganancias }}
                                     </span>
                                 </div>
                                 <!-- /.info-box-content -->
@@ -116,7 +116,7 @@
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Clientes nuevos</span>
-                                    <span class="info-box-number">@{{ estadisticas.clientes_nuevos }}</span>
+                                    <span class="info-box-number">@{{ estadisticas . clientes_nuevos }}</span>
                                 </div>
                                 <!-- /.info-box-content -->
                             </div>
@@ -134,7 +134,7 @@
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Número de ventas</span>
-                                    <span class="info-box-number">@{{ estadisticas.numero_ventas }}</span>
+                                    <span class="info-box-number">@{{ estadisticas . numero_ventas }}</span>
                                 </div>
                                 <!-- /.info-box-content -->
                             </div>
@@ -147,7 +147,7 @@
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Número de clientes</span>
-                                    <span class="info-box-number">@{{ estadisticas.numero_clientes }}</span>
+                                    <span class="info-box-number">@{{ estadisticas . numero_clientes }}</span>
                                 </div>
                                 <!-- /.info-box-content -->
                             </div>
@@ -157,9 +157,11 @@
                     </div>
                     <!-- /.row -->
 
+                    {{--
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
+                                <!-- -->
                                 <div class="card-header">
                                     <h5 class="card-title">Reporte de ventas por mes</h5>
 
@@ -185,7 +187,10 @@
                                         </button>
                                     </div>
                                 </div>
+
                                 <!-- /.card-header -->
+
+                                <!-- -->
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-12">
@@ -204,59 +209,17 @@
                                     </div>
                                     <!-- /.row -->
                                 </div>
-                                <!-- ./card-body 
-                                {{-- <div class="card-footer">
-                                    <div class="row">
-                                        <div class="col-sm-3 col-6">
-                                            <div class="description-block border-right">
-                                                <span class="description-percentage text-success"><i
-                                                        class="fas fa-caret-up"></i> 17%</span>
-                                                <h5 class="description-header">$35,210.43</h5>
-                                                <span class="description-text">TOTAL REVENUE</span>
-                                            </div>
-                                            <!-- /.description-block -->
-                            </div>
-                            <!-- /.col -->
-                            <div class="col-sm-3 col-6">
-                                <div class="description-block border-right">
-                                    <span class="description-percentage text-warning"><i class="fas fa-caret-left"></i>
-                                        0%</span>
-                                    <h5 class="description-header">$10,390.90</h5>
-                                    <span class="description-text">TOTAL COST</span>
-                                </div>
-                                <!-- /.description-block -->
-                            </div>
-                            <!-- /.col -->
-                            <div class="col-sm-3 col-6">
-                                <div class="description-block border-right">
-                                    <span class="description-percentage text-success"><i class="fas fa-caret-up"></i>
-                                        20%</span>
-                                    <h5 class="description-header">$24,813.53</h5>
-                                    <span class="description-text">TOTAL PROFIT</span>
-                                </div>
-                                <!-- /.description-block -->
-                            </div>
-                            <!-- /.col -->
-                            <div class="col-sm-3 col-6">
-                                <div class="description-block">
-                                    <span class="description-percentage text-danger"><i class="fas fa-caret-down"></i>
-                                        18%</span>
-                                    <h5 class="description-header">1200</h5>
-                                    <span class="description-text">GOAL COMPLETIONS</span>
-                                </div>
-                                <!-- /.description-block -->
-                            </div>
-                        </div>
-                        <!-- /.row -->
-                    </div> --}}
 
-                    <!-- /.card-footer -->
+
+
+                                <!-- /.card-footer -->
                             </div>
                             <!-- /.card -->
                         </div>
                         <!-- /.col -->
                     </div>
                     <!-- /.row -->
+                    --}}
 
                     <!-- Main row -->
                     <div class="row">
@@ -291,11 +254,11 @@
                                                     </div>
                                                     <div class="product-info">
                                                         <a href="javascript:void(0)"
-                                                            class="product-title">@{{ detalle.producto.nombre }}
+                                                            class="product-title">@{{ detalle . producto . nombre }}
                                                             <span
-                                                                class="badge badge-warning float-right">$@{{ detalle.producto.precio_venta }}</span></a>
+                                                                class="badge badge-warning float-right">$@{{ detalle . producto . precio_venta }}</span></a>
                                                         <span class="product-description">
-                                                            @{{ detalle.producto.marca }}
+                                                            @{{ detalle . producto . marca }}
                                                         </span>
                                                     </div>
                                                 </li>
@@ -336,9 +299,8 @@
                                                 <li v-for="(item, index) in clientesConMasCompras">
                                                     <img :src="'dist/img/user' + incrementarIndex(index) + '-128x128.jpg'"
                                                         alt="User Image">
-                                                    <a class="users-list-name"
-                                                        href="#">@{{ item.cliente.nombre }}</a>
-                                                    <span class="users-list-date">@{{ item.total_ventas }}
+                                                    <a class="users-list-name" href="#">@{{ item . cliente . nombre }}</a>
+                                                    <span class="users-list-date">@{{ item . total_ventas }}
                                                         compras</span>
                                                 </li>
 
