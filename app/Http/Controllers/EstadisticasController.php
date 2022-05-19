@@ -86,7 +86,7 @@ class EstadisticasController extends Controller
     public function ultimosProductosVendidos()
     {
 
-        $productos = DB::table("detalle_venta")->selectRaw('producto_id')
+        $productos = DB::table("detalle_venta")->selectRaw('producto_id, created_at')
             ->distinct()
             ->orderBy('created_at', 'DESC')
             ->get();
