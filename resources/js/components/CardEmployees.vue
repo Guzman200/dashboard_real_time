@@ -16,28 +16,30 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-                        <form>
+                    <form class="form" @submit.prevent="createEmployee">
+                        <div class="modal-body">
                             <div class="form-group">
                                 <label class="form-label">Nombre</label>
-                                <input type="text" class="form-control" id="nombres" placeholder="Ingresa el nombre"
-                                    v-model="newEmployee.nombre">
+                                <input type="text" class="form-control " id="nombres" placeholder="Ingresa el nombre"
+                                    required v-model="newEmployee.nombre">
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Apellido Paterno</label>
                                 <input type="text" class="form-control" id="a_paterno"
-                                    placeholder="Ingresa el apellido paterno" v-model="newEmployee.a_paterno">
+                                    placeholder="Ingresa el apellido paterno" required v-model="newEmployee.a_paterno">
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Apellido Materno</label>
                                 <input type="text" class="form-control" id="a_materno"
-                                    placeholder="Ingresa el apellido materno" v-model="newEmployee.a_materno">
+                                    placeholder="Ingresa el apellido materno" required v-model="newEmployee.a_materno">
                             </div>
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
                                         <label>Sucursal</label>
-                                        <select class="form-control" v-model="newEmployee.sucursal_id">
+                                        <select class="form-control custom-select" required
+                                            v-model="newEmployee.sucursal_id">
+                                            <option value="">Selecciona una sucursal</option>
                                             <option v-for="sucursal in sucursales" :key="sucursal.id"
                                                 v-bind:value="sucursal.id">
                                                 {{sucursal.nombre}}</option>
@@ -47,20 +49,21 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label>Area</label>
-                                        <select class="form-control" v-model="newEmployee.area_id">
+                                        <select class="form-control custom-select" required
+                                            v-model="newEmployee.area_id">
+                                            <option value="">Selecciona un area</option>
                                             <option v-for="area in areas" :key="area.id" v-bind:value="area.id">
                                                 {{area.nombre}}</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-primary" @click.prevent="createEmployee">
-                            Guardar</button>
-                    </div>
+                        </div>
+                        <div class="modal-footer justify-content-between">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </form>
                 </div>
                 <!-- /.modal-content -->
             </div>
@@ -119,6 +122,7 @@
                     a_paterno: '',
                     a_materno: '',
                     sucursal_id: '',
+                    nombre: '',
                     area_id: ''
 
                 }
@@ -162,11 +166,11 @@
                 axios.post('create_employee', this.newEmployee).then(res => {
                     this.getEmployees()
                     this.newEmployee.nombre = '',
-                    this.newEmployee.a_paterno = '',
-                    this.newEmployee.a_materno = '',
-                    this.newEmployee.sucursal_id = '',
-                    this.newEmployee.area_id = '',
-                    $('#modalEmpleados').modal('hide')
+                        this.newEmployee.a_paterno = '',
+                        this.newEmployee.a_materno = '',
+                        this.newEmployee.sucursal_id = '',
+                        this.newEmployee.area_id = '',
+                        $('#modalEmpleados').modal('hide')
                     Swal.fire({
                         icon: 'success',
                         title: '¡Empleado añadido!',

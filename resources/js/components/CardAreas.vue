@@ -16,20 +16,21 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-                        <form>
+                    <form class="form" @submit.prevent="createArea">
+                        <div class="modal-body">
+
                             <div class="form-group">
                                 <label class="form-label">Nombre</label>
                                 <input type="text" class="form-control" id="nombre" placeholder="Ingresa el nombre"
-                                    v-model="newArea.nombre">
+                                    required v-model="newArea.nombre">
                             </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-primary" @click.prevent="createArea">
-                            Guardar</button>
-                    </div>
+
+                        </div>
+                        <div class="modal-footer justify-content-between">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </form>
                 </div>
                 <!-- /.modal-content -->
             </div>
@@ -118,7 +119,7 @@
                 axios.post('create_area', this.newArea).then(res => {
                     this.getAreas()
                     this.newArea.nombre = '',
-                    $('#modalArea').modal('hide')
+                        $('#modalArea').modal('hide')
                     Swal.fire({
                         icon: 'success',
                         title: '¡Area añadida!',

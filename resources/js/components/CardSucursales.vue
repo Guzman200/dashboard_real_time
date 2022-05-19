@@ -16,35 +16,38 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-                        <form>
+                    <form class="form" @submit.prevent="createSucursal">
+                        <div class="modal-body">
+
                             <div class="form-group">
                                 <label class="form-label">Nombre</label>
                                 <input type="text" class="form-control" id="nombre" placeholder="Ingresa el nombre"
-                                    v-model="newSucursal.nombre">
+                                    required v-model="newSucursal.nombre">
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Estado</label>
                                 <input type="text" class="form-control" id="estado" placeholder="Ingresa el estado"
-                                    v-model="newSucursal.estado">
+                                    required v-model="newSucursal.estado">
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Ciudad</label>
                                 <input type="text" class="form-control" id="ciudad" placeholder="Ingresa la ciudad"
-                                    v-model="newSucursal.ciudad">
+                                    required v-model="newSucursal.ciudad">
                             </div>
                             <div class="form-group">
                                 <label class="form-label">C.P.</label>
                                 <input type="text" class="form-control" id="cp" placeholder="Ingresa el C.P."
-                                    v-model="newSucursal.cp">
+                                    maxlength="5" pattern="(\d{5})"
+                                    required v-model="newSucursal.cp">
+                                <small class="form-text text-muted">5 digitos.</small>
                             </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-primary" @click.prevent="createSucursal">
-                            Guardar</button>
-                    </div>
+
+                        </div>
+                        <div class="modal-footer justify-content-between">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </form>
                 </div>
                 <!-- /.modal-content -->
             </div>
@@ -143,10 +146,10 @@
                 axios.post('create_sucursal', this.newSucursal).then(res => {
                     this.getSucursales()
                     this.newSucursal.nombre = '',
-                    this.newSucursal.estado = '',
-                    this.newSucursal.ciudad = '',
-                    this.newSucursal.cp = '',
-                    $('#modalSucursal').modal('hide')
+                        this.newSucursal.estado = '',
+                        this.newSucursal.ciudad = '',
+                        this.newSucursal.cp = '',
+                        $('#modalSucursal').modal('hide')
                     Swal.fire({
                         icon: 'success',
                         title: '¡Sucursal añadida!',
