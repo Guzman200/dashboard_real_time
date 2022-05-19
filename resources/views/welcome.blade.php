@@ -101,7 +101,7 @@
                                 <div class="info-box-content">
                                     <span class="info-box-text">Ganancias</span>
                                     <span class="info-box-number">
-                                        @{{ estadisticas . ganancias }}
+                                        @{{ estadisticas.ganancias }}
                                     </span>
                                 </div>
                                 <!-- /.info-box-content -->
@@ -116,7 +116,7 @@
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Clientes nuevos</span>
-                                    <span class="info-box-number">@{{ estadisticas . clientes_nuevos }}</span>
+                                    <span class="info-box-number">@{{ estadisticas.clientes_nuevos }}</span>
                                 </div>
                                 <!-- /.info-box-content -->
                             </div>
@@ -134,7 +134,7 @@
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Número de ventas</span>
-                                    <span class="info-box-number">@{{ estadisticas . numero_ventas }}</span>
+                                    <span class="info-box-number">@{{ estadisticas.numero_ventas }}</span>
                                 </div>
                                 <!-- /.info-box-content -->
                             </div>
@@ -147,7 +147,7 @@
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Número de clientes</span>
-                                    <span class="info-box-number">@{{ estadisticas . numero_clientes }}</span>
+                                    <span class="info-box-number">@{{ estadisticas.numero_clientes }}</span>
                                 </div>
                                 <!-- /.info-box-content -->
                             </div>
@@ -291,11 +291,11 @@
                                                     </div>
                                                     <div class="product-info">
                                                         <a href="javascript:void(0)"
-                                                            class="product-title">@{{ detalle . producto . nombre }}
+                                                            class="product-title">@{{ detalle.producto.nombre }}
                                                             <span
-                                                                class="badge badge-warning float-right">$@{{ detalle . producto . precio_venta }}</span></a>
+                                                                class="badge badge-warning float-right">$@{{ detalle.producto.precio_venta }}</span></a>
                                                         <span class="product-description">
-                                                            @{{ detalle . producto . marca }}
+                                                            @{{ detalle.producto.marca }}
                                                         </span>
                                                     </div>
                                                 </li>
@@ -337,8 +337,8 @@
                                                     <img :src="'dist/img/user' + incrementarIndex(index) + '-128x128.jpg'"
                                                         alt="User Image">
                                                     <a class="users-list-name"
-                                                        href="#">@{{ item . cliente . nombre }}</a>
-                                                    <span class="users-list-date">@{{ item . total_ventas }}
+                                                        href="#">@{{ item.cliente.nombre }}</a>
+                                                    <span class="users-list-date">@{{ item.total_ventas }}
                                                         compras</span>
                                                 </li>
 

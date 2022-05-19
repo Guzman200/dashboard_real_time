@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\MyEvent;
 use App\Models\Producto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -25,9 +26,12 @@ class ProductoController extends Controller
             'categoria_id' => $request['categoria_id'],
             'area_id' => $request['area_id']
         ]);
+
+        event(new MyEvent('hello world'));
     }
 
     public function delete(Producto $producto){
         $producto->delete();
+        event(new MyEvent('hello world'));
     }
 }

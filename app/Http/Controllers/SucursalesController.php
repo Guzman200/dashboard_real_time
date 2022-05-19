@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\MyEvent;
 use App\Models\Sucursal;
 use Illuminate\Http\Request;
 
@@ -20,10 +21,13 @@ class SucursalesController extends Controller
             'ciudad' => $request['ciudad'],
             'cp' => $request['cp']
         ]);
+
+        event(new MyEvent('hello world'));
     }
 
     public function delete(Sucursal $idSucursal){
         $idSucursal->delete();
+        event(new MyEvent('hello world'));
     }
 
 }

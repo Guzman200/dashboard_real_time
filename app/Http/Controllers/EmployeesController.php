@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\MyEvent;
 use App\Models\Empleado;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -26,10 +27,13 @@ class EmployeesController extends Controller
             'sucursal_id' => $request['sucursal_id'],
             'area_id' => $request['area_id']
         ]);
+
+        event(new MyEvent('hello world'));
     }
 
     public function delete(Empleado $idEmployee){
         $idEmployee->delete();
+        event(new MyEvent('hello world'));
     }
 
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\MyEvent;
 use App\Models\Area;
 use Illuminate\Http\Request;
 
@@ -17,10 +18,13 @@ class AreasController extends Controller
         return Area::create([
             'nombre' => $request['nombre']
         ]);
+
+        event(new MyEvent('hello world'));
     }
 
     public function delete(Area $idArea){
         $idArea->delete();
+        event(new MyEvent('hello world'));
     }
 
 }

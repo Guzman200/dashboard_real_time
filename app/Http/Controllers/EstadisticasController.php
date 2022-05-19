@@ -9,6 +9,7 @@ use App\Models\Venta;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class EstadisticasController extends Controller
 {
@@ -85,7 +86,21 @@ class EstadisticasController extends Controller
     public function ultimosProductosVendidos()
     {
 
-        $detalle = DetalleVenta::select(['producto_id'])->with(['producto'])->distinct()->orderBy('created_at', 'DESC')->take(4)->get();
+        $productos = DB::table("detalle_venta")->selectRaw('producto_id')
+            ->distinct()
+            ->orderBy('created_at', 'DESC')
+            ->get();
+
+        $producto_ids = [];
+
+        foreach($productos as $producto){
+
+            $producto = (array) $producto;
+            $producto_ids[] += $producto['producto_id'];
+
+        }
+        
+        $detalle = DetalleVenta::with('producto')->whereIn('producto_id', $producto_ids)->get();
 
         return response()->json($detalle);
     }
