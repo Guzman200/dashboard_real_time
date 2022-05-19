@@ -19,6 +19,8 @@ Vue.component('card-areas', require('./components/CardAreas.vue').default);
 
 Vue.component('card-categorias', require('./components/CardCategorias.vue').default);
 
+Vue.component('card-productos', require('./components/CardProductos.vue').default);
+
 const store = new Vuex.Store({
     state: {
       products: [{

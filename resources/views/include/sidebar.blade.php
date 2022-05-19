@@ -52,5 +52,13 @@
                 </p>
             </a>
         </li>
+        <li class="nav-item">
+            <a href="./productos" class="nav-link">
+                <i class="nav-icon fas fa-store-alt"></i>
+                <p>
+                    Productos
+                </p>
+            </a>
+        </li>
     </ul>
 </nav>

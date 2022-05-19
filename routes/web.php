@@ -7,6 +7,7 @@ use App\Http\Controllers\ClientsController;
 
 use App\Events\MyEvent;
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\ProductoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,6 +45,10 @@ Route::get('/categorias', function () {
     return view('categorias');
 });
 
+Route::get('/productos', function () {
+    return view('productos');
+});
+
 //Rutas de empleados
 Route::get('/employees_list',[EmployeesController::class, 'list'])->name('employees_list');
 Route::post('/create_employee',[EmployeesController::class, 'store'])->name('create_employee');
@@ -68,6 +73,11 @@ Route::delete('/delete_area/{idArea}',[AreasController::class, 'delete'])->name(
 Route::get('/categoria_list',[CategoriaController::class, 'list'])->name('categoria_list');
 Route::post('/create_categoria',[CategoriaController::class, 'store'])->name('categoria_area');
 Route::delete('/delete_categoria/{categoria}',[CategoriaController::class, 'delete'])->name('categoria_area');
+
+//Rutas de productos
+Route::get('/productos_list',[ProductoController::class, 'list']);
+Route::post('/create_productos',[ProductoController::class, 'store']);
+Route::delete('/delete_productos/{producto}',[ProductoController::class, 'delete']);
 
 
 Route::get('test', function(){
