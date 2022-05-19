@@ -60,5 +60,13 @@
                 </p>
             </a>
         </li>
+        <li class="nav-item">
+            <a href="./ventas" class="nav-link">
+                <i class="nav-icon fas fa-store-alt"></i>
+                <p>
+                    Crear venta
+                </p>
+            </a>
+        </li>
     </ul>
 </nav>

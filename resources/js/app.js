@@ -21,6 +21,8 @@ Vue.component('card-categorias', require('./components/CardCategorias.vue').defa
 
 Vue.component('card-productos', require('./components/CardProductos.vue').default);
 
+Vue.component('crear-venta', require('./components/CrearVenta.vue').default);
+
 const store = new Vuex.Store({
     state: {
       products: [{

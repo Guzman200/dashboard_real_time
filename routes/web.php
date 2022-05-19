@@ -7,7 +7,9 @@ use App\Http\Controllers\ClientsController;
 
 use App\Events\MyEvent;
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\FormaPagoController;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\VentaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -49,6 +51,10 @@ Route::get('/productos', function () {
     return view('productos');
 });
 
+Route::get('/ventas', function () {
+    return view('ventas');
+});
+
 //Rutas de empleados
 Route::get('/employees_list',[EmployeesController::class, 'list'])->name('employees_list');
 Route::post('/create_employee',[EmployeesController::class, 'store'])->name('create_employee');
@@ -78,6 +84,12 @@ Route::delete('/delete_categoria/{categoria}',[CategoriaController::class, 'dele
 Route::get('/productos_list',[ProductoController::class, 'list']);
 Route::post('/create_productos',[ProductoController::class, 'store']);
 Route::delete('/delete_productos/{producto}',[ProductoController::class, 'delete']);
+
+//Rutas de formas de pago
+Route::get('/formaspago_list',[FormaPagoController::class, 'list']);
+
+//Rutas de ventas
+Route::post('/ventas',[VentaController::class, 'crearVenta']);
 
 
 Route::get('test', function(){
