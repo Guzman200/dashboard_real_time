@@ -18,7 +18,6 @@
                     </div>
                     <form class="form" @submit.prevent="createArea">
                         <div class="modal-body">
-
                             <div class="form-group">
                                 <label class="form-label">Nombre</label>
                                 <input type="text" class="form-control" id="nombre" placeholder="Ingresa el nombre"
