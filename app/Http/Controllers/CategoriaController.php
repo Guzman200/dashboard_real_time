@@ -14,11 +14,13 @@ class CategoriaController extends Controller
 
     public function store(Request $request){
 
-        return Categoria::create([
+        $categoria = Categoria::create([
             'nombre' => $request['nombre']
         ]);
 
         event(new MyEvent('hello world'));
+
+        return $categoria;
     }
 
     public function delete(Categoria $categoria){

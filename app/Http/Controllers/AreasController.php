@@ -15,11 +15,13 @@ class AreasController extends Controller
 
     public function store(Request $request){
 
-        return Area::create([
+        $area = Area::create([
             'nombre' => $request['nombre']
         ]);
 
         event(new MyEvent('hello world'));
+
+        return $area;
     }
 
     public function delete(Area $idArea){

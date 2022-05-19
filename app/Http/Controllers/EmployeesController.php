@@ -20,7 +20,7 @@ class EmployeesController extends Controller
 
     public function store(Request $request){
 
-        return Empleado::create([
+        $empleado = Empleado::create([
             'nombre' => $request['nombre'],
             'a_paterno' => $request['a_paterno'],
             'a_materno' => $request['a_materno'],
@@ -29,6 +29,8 @@ class EmployeesController extends Controller
         ]);
 
         event(new MyEvent('hello world'));
+
+        return $empleado;
     }
 
     public function delete(Empleado $idEmployee){

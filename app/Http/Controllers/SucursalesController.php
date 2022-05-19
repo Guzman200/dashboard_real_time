@@ -15,7 +15,7 @@ class SucursalesController extends Controller
 
     public function store(Request $request){
 
-        return Sucursal::create([
+        $sucursal = Sucursal::create([
             'nombre' => $request['nombre'],
             'estado' => $request['estado'],
             'ciudad' => $request['ciudad'],
@@ -23,6 +23,8 @@ class SucursalesController extends Controller
         ]);
 
         event(new MyEvent('hello world'));
+
+        return $sucursal;
     }
 
     public function delete(Sucursal $idSucursal){

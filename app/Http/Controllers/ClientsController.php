@@ -15,7 +15,7 @@ class ClientsController extends Controller
 
     public function store(Request $request){
 
-        return Cliente::create([
+        $cliente = Cliente::create([
             'nombre' => $request['nombre'],
             'a_paterno' => $request['a_paterno'],
             'a_materno' => $request['a_materno'],
@@ -23,6 +23,9 @@ class ClientsController extends Controller
         ]);
 
         event(new MyEvent('hello world'));
+
+        return $cliente;
+
     }
 
     public function delete(Cliente $idClient){

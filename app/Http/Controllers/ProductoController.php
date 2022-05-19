@@ -19,7 +19,7 @@ class ProductoController extends Controller
 
     public function store(Request $request){
 
-        return Producto::create([
+        $producto = Producto::create([
             'nombre' => $request['nombre'],
             'marca' => $request['marca'],
             'precio_venta' => $request['precio_venta'],
@@ -28,6 +28,8 @@ class ProductoController extends Controller
         ]);
 
         event(new MyEvent('hello world'));
+
+        return $producto;
     }
 
     public function delete(Producto $producto){
