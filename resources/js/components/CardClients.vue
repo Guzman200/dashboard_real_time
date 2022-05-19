@@ -16,35 +16,37 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-                        <form>
+                    <form class="form" @submit.prevent="createClient">
+                        <div class="modal-body">
+
                             <div class="form-group">
                                 <label class="form-label">Nombre</label>
                                 <input type="text" class="form-control" id="nombres" placeholder="Ingresa el nombre"
-                                    v-model="newClient.nombre">
+                                    required v-model="newClient.nombre">
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Apellido Paterno</label>
                                 <input type="text" class="form-control" id="a_paterno"
-                                    placeholder="Ingresa el apellido paterno" v-model="newClient.a_paterno">
+                                    placeholder="Ingresa el apellido paterno" required v-model="newClient.a_paterno">
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Apellido Materno</label>
                                 <input type="text" class="form-control" id="a_materno"
-                                    placeholder="Ingresa el apellido materno" v-model="newClient.a_materno">
+                                    placeholder="Ingresa el apellido materno" required v-model="newClient.a_materno">
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Telefono</label>
-                                <input type="text" class="form-control" id="telefono" placeholder="Ingresa el telefono"
-                                    v-model="newClient.telefono">
+                                <input type="tel" class="form-control" id="telefono" placeholder="Ingresa el telefono"
+                                    maxlength="10" pattern="(\d{10})" required v-model="newClient.telefono">
+                                <small class="form-text text-muted">Numero a 10 digitos.</small>
                             </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-primary" @click.prevent="createClient">
-                            Guardar</button>
-                    </div>
+
+                        </div>
+                        <div class="modal-footer justify-content-between">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary"> Guardar</button>
+                        </div>
+                    </form>
                 </div>
                 <!-- /.modal-content -->
             </div>
@@ -139,10 +141,10 @@
                 axios.post('create_client', this.newClient).then(res => {
                     this.getClients()
                     this.newClient.nombre = '',
-                    this.newClient.a_paterno = '',
-                    this.newClient.a_materno ='',
-                    this.newClient.telefono = '',
-                    $('#modalClientes').modal('hide')
+                        this.newClient.a_paterno = '',
+                        this.newClient.a_materno = '',
+                        this.newClient.telefono = '',
+                        $('#modalClientes').modal('hide')
                     Swal.fire({
                         icon: 'success',
                         title: '¡Cliente añadido!',
