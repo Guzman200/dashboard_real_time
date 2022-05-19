@@ -2,12 +2,12 @@
 
     <div class="card">
         <div class="card-header">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEmpleados">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalProductos">
                 Agregar Producto</button>
         </div>
         <!-- /.card-header -->
 
-        <div class="modal fade" id="modalEmpleados">
+        <div class="modal fade" id="modalProductos">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -16,30 +16,32 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-                        <form>
+                    <form class="form" @submit.prevent="createproductos">
+                        <div class="modal-body">
                             <div class="form-group">
                                 <label class="form-label">Nombre</label>
-                                <input type="text" class="form-control" id="nombres" placeholder="Ingresa el nombre"
-                                    v-model="newProducto.nombre">
+                                <input type="text" class="form-control" id="nombre" placeholder="Ingresa el nombre"
+                                    required v-model="newProducto.nombre">
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Marca</label>
-                                <input type="text" class="form-control" id="a_paterno"
-                                    placeholder="Ingresa la marca" v-model="newProducto.marca">
+                                <input type="text" class="form-control" id="marca" placeholder="Ingresa la marca"
+                                    required v-model="newProducto.marca">
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Precio de venta</label>
-                                <input type="number" class="form-control" id="a_materno"
-                                    placeholder="Ingresa el precio de venta" v-model="newProducto.precio_venta">
+                                <input type="number" class="form-control" id="precio_venta"
+                                    placeholder="Ingresa el precio de venta" 
+                                    required v-model="newProducto.precio_venta">
                             </div>
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
                                         <label>Area</label>
-                                        <select class="form-control" v-model="newProducto.area_id">
-                                            <option v-for="area in areas" :key="area.id"
-                                                v-bind:value="area.id">
+                                        <select class="form-control custom-select" required
+                                        v-model="newProducto.area_id">
+                                            <option value="">Selecciona un area</option>
+                                            <option v-for="area in areas" :key="area.id" v-bind:value="area.id">
                                                 {{area.nombre}}</option>
                                         </select>
                                     </div>
@@ -47,20 +49,22 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label>Categoría</label>
-                                        <select class="form-control" v-model="newProducto.categoria_id">
-                                            <option v-for="categoria in categorias" :key="categoria.id" v-bind:value="categoria.id">
+                                        <select class="form-control custom-select" required
+                                        v-model="newProducto.categoria_id">
+                                            <option value="">Selecciona un categoria</option>
+                                            <option v-for="categoria in categorias" :key="categoria.id"
+                                                v-bind:value="categoria.id">
                                                 {{categoria.nombre}}</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-primary" @click.prevent="createproductos">
-                            Guardar</button>
-                    </div>
+                        </div>
+                        <div class="modal-footer justify-content-between">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </form>
                 </div>
                 <!-- /.modal-content -->
             </div>
@@ -69,7 +73,7 @@
         <!-- /.modal -->
 
         <div class="card-body">
-            <table class="table table-bordered table-striped" id="empleados">
+            <table class="table table-bordered table-striped" id="productos">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -86,7 +90,7 @@
                         <td>{{producto.id}}</td>
                         <td>{{producto.nombre}}</td>
                         <td>{{producto.marca}}</td>
-                        <td>${{producto.precio_venta}}</td>
+                        <td>{{producto.precio_venta}}</td>
                         <td>{{producto.categoria}}</td>
                         <td>{{producto.area}}</td>
                         <td class="text-center">
@@ -120,8 +124,8 @@
                 categorias: [],
                 newProducto: {
                     nombre: '',
-                    a_paterno: '',
-                    a_materno: '',
+                    marca: '',
+                    precio_venta: '',
                     categoria_id: '',
                     area_id: ''
 
@@ -131,7 +135,7 @@
         methods: {
             tabla() {
                 this.$nextTick(() => {
-                    $('#empleados').DataTable({
+                    $('#productos').DataTable({
                         language: {
                             "decimal": "",
                             "emptyTable": "No hay información",
@@ -158,7 +162,7 @@
             getproductos() {
                 axios.get('productos_list').then(res => {
                     this.productos = res.data
-                    $('#empleados').DataTable().destroy()
+                    $('#productos').DataTable().destroy()
                     this.tabla();
                 });
             },
@@ -166,11 +170,11 @@
                 axios.post('create_productos', this.newProducto).then(res => {
                     this.getproductos()
                     this.newProducto.nombre = '',
-                    this.newProducto.a_paterno = '',
-                    this.newProducto.a_materno = '',
-                    this.newProducto.sucursal_id = '',
-                    this.newProducto.area_id = '',
-                    $('#modalEmpleados').modal('hide')
+                        this.newProducto.marca = '',
+                        this.newProducto.precio_venta = '',
+                        this.newProducto.categoria_id = '',
+                        this.newProducto.area_id = '',
+                        $('#modalProductos').modal('hide')
                     Swal.fire({
                         icon: 'success',
                         title: '¡Producto añadido!',

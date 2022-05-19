@@ -2,12 +2,12 @@
 
     <div class="card">
         <div class="card-header">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalArea">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCategoria">
                 Agregar Categoría</button>
         </div>
         <!-- /.card-header -->
 
-        <div class="modal fade" id="modalArea">
+        <div class="modal fade" id="modalCategoria">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -16,20 +16,21 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-                        <form>
+                    <form class="form" @submit.prevent="createCategoria">
+                        <div class="modal-body">
+
                             <div class="form-group">
                                 <label class="form-label">Nombre</label>
                                 <input type="text" class="form-control" id="nombre" placeholder="Ingresa el nombre"
-                                    v-model="newCategoria.nombre">
+                                    required v-model="newCategoria.nombre">
                             </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-primary" @click.prevent="createCategoria">
-                            Guardar</button>
-                    </div>
+
+                        </div>
+                        <div class="modal-footer justify-content-between">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </form>
                 </div>
                 <!-- /.modal-content -->
             </div>
@@ -38,7 +39,7 @@
         <!-- /.modal -->
 
         <div class="card-body">
-            <table class="table table-bordered table-striped" id="areas">
+            <table class="table table-bordered table-striped" id="categorias">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -83,7 +84,7 @@
         methods: {
             tabla() {
                 this.$nextTick(() => {
-                    $('#areas').DataTable({
+                    $('#categorias').DataTable({
                         language: {
                             "decimal": "",
                             "emptyTable": "No hay información",
@@ -110,7 +111,7 @@
             getCategorias() {
                 axios.get('categoria_list').then(res => {
                     this.areas = res.data
-                    $('#areas').DataTable().destroy()
+                    $('#categorias').DataTable().destroy()
                     this.tabla();
                 });
             },
@@ -118,7 +119,7 @@
                 axios.post('create_categoria', this.newCategoria).then(res => {
                     this.getCategorias()
                     this.newCategoria.nombre = '',
-                    $('#modalArea').modal('hide')
+                        $('#modalCategoria').modal('hide')
                     Swal.fire({
                         icon: 'success',
                         title: '¡Categoría añadida!',
